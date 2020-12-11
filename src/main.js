@@ -4,7 +4,7 @@ import router from './router'
 import DashboardLayout from '@/components/layout/DashboardLayout.vue';
 import EmptyLayout from '@/components/layout/EmptyLayout.vue';
 
-import 'tailwindcss/tailwind.css'
+import '@/assets/styles/styles.css'
 
 const Vue = createApp(App)
 

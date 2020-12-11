@@ -38,11 +38,7 @@
           </div>
 
           <div>
-            <a
-                class="block text-sm fontme text-indigo-700 hover:underline"
-                href="#"
-            >Forgot your password?</a
-            >
+            <a class="block text-sm fontme text-indigo-700 hover:underline" href="#">Forgot your password?</a>
           </div>
         </div>
 
@@ -73,7 +69,6 @@ export default {
     const password = ref('password')
 
     auth.checkIfAuthenticated();
-
 
     const login = () => {
       auth.fetchCsrf().then(() => {

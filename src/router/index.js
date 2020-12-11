@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/Login'
 import Dashboard from '@/views/Dashboard.vue'
-import Sites from '@/views/Sites.vue'
+import Monitors from '@/views/Monitors.vue'
 import Integrations from '@/views/Integrations.vue'
-
+import CreateMonitor from '@/views/CreateMonitor'
 const routes = [
   {
     path: '/',
@@ -22,10 +22,16 @@ const routes = [
     meta: {sidebar: true}
   },
   {
-    path: '/sites',
-    name: 'Sites',
-    component: Sites,
+    path: '/monitors',
+    name: 'Monitors',
+    component: Monitors,
     meta: {sidebar: true}
+  },
+  {
+    path: '/monitors/create',
+    name: 'Create Monitor',
+    component: CreateMonitor,
+    meta: {sidebar: false}
   },
   {
     path: '/integrations',
