@@ -41,10 +41,18 @@ export function useAuth () {
   const router = useRouter()
   const route = useRoute()
 
+  const redirectRoot = () => {
+    return userIsAuthenticated.value && route.path === '/login';
+  }
+
+  const redirectLogin = () => {
+    return !userIsAuthenticated.value && route.path !== '/login';
+  }
+
   watchEffect(() => {
-    if (userIsAuthenticated.value && route.path === '/login') {
+    if (redirectRoot()) {
       router.push('/')
-    } else if (!userIsAuthenticated.value && route.path !== '/login') {
+    } else if (redirectLogin()) {
       router.push('/login')
     }
     localStore.set('authenticated', userIsAuthenticated.value)

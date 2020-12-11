@@ -19,7 +19,7 @@ export default function useLocalStore (localStoreKey) {
   }
 
   const sync = () => {
-    window.localStorage.setItem(localStoreKey, JSON.stringify(store.value))
+    window.localStorage.setItem(key, JSON.stringify(store.value))
   }
 
   watchEffect(() => {
