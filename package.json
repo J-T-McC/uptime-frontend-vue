@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.2.1",
     "autoprefixer": "9",
     "axios": "^0.21.0",
     "chart.js": "^2.9.4",
@@ -16,6 +17,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "vue": "^3.0.2",
     "vue-router": "^4.0.0-0",
+    "vue-tailwind": "^2.0.0",
     "vue3-chartjs": "https://github.com/J-T-McC/vue3-chartjs#main",
     "vuex": "^4.0.0-rc.2"
   },

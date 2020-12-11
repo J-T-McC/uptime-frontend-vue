@@ -1,7 +1,7 @@
 <template>
   <label class="block mt-3">
     <span class="text-gray-700 text-sm">{{ label }}</span>
-    <input v-bind='$attrs'
+    <input :type='type'
            :value="value"
            @input="updateValue($event.target.value)"
            class="form-input mt-1 block w-full rounded-md focus:border-indigo-600"
@@ -15,6 +15,9 @@ export default {
   name: 'text-input',
   props: {
     label: String,
+    type: {
+      default: 'text'
+    },
     value: {
       default: '',
       type: String

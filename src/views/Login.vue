@@ -60,8 +60,7 @@
 
 <script>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useAuth, useIsAuthenticated } from '@/hooks/useAuth.js'
+import { useAuth } from '@/hooks/useAuth.js'
 import TextInput from '@/components/form/TextInput'
 
 export default {
@@ -69,18 +68,16 @@ export default {
     TextInput
   },
   setup () {
-    const router = useRouter()
     const auth = useAuth()
-    const email = ref('')
-    const password = ref('')
+    const email = ref('test@example.com')
+    const password = ref('password')
+
+    auth.checkIfAuthenticated();
+
 
     const login = () => {
       auth.fetchCsrf().then(() => {
-        auth.login(email.value, password.value).finally(() => {
-          if (useIsAuthenticated) {
-            router.push('/dashboard')
-          }
-        })
+        auth.login(email.value, password.value)
       })
     }
 

@@ -1,33 +1,52 @@
-import axios from 'axios'
-axios.defaults.withCredentials = true
-axios.defaults.headers['Accept'] = 'application/json'
-
+import axios from '@/helpers/axios.js'
 import store from '@/stores/state'
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
+import { useRouter } from 'vue-router'
 
-export const useIsAuthenticated = ref(false)
+const userIsAuthenticated = ref(false)
 
 export function useAuth () {
+
   const login = async (email, password) => {
     return axios.post(store.state.api + '/login', {
       email: email,
       password: password
     }).then((response) => {
-      useIsAuthenticated.value = response.status >= 200 && response.status < 300
+      userIsAuthenticated.value = response.status >= 200 && response.status < 300
     })
   }
 
   const logout = async () => {
-    return axios.post(store.state.api + '/logout')
+    await axios.post(store.state.api + '/logout');
+    userIsAuthenticated.value = false
+  }
+
+  const checkIfAuthenticated = async () => {
+    const response = await axios.get(store.state.api + '/authenticated');
+    userIsAuthenticated.value = response.status >= 200 && response.status < 300
   }
 
   const fetchCsrf = async () => {
-    return axios.get(store.state.api + '/sanctum/csrf-cookie')
+    return axios.get(store.state.auth + '/sanctum/csrf-cookie')
   }
+
+  const router = useRouter()
+
+  watchEffect(() => {
+    if(userIsAuthenticated.value) {
+      router.push('/')
+    }
+    else if(!userIsAuthenticated.value) {
+      router.push('/login')
+    }
+  })
 
   return {
     login,
     logout,
-    fetchCsrf
+    fetchCsrf,
+    checkIfAuthenticated,
+    userIsAuthenticated
   }
 }
+

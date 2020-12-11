@@ -2,7 +2,7 @@
   <header class="flex justify-between items-center py-4 px-6 bg-white border-b-4 border-indigo-600">
     <div class="flex items-center">
 
-    <!-- Mobile Nav Toggle -->
+      <!-- Mobile Nav Toggle -->
       <button @click="isOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
         <svg
             class="h-6 w-6"
@@ -20,25 +20,25 @@
         </svg>
       </button>
 
-<!--      <div class="relative mx-4 lg:mx-0">-->
-<!--        <span class="absolute inset-y-0 left-0 pl-3 flex items-center">-->
-<!--          <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">-->
-<!--            <path-->
-<!--                d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"-->
-<!--                stroke="currentColor"-->
-<!--                stroke-width="2"-->
-<!--                stroke-linecap="round"-->
-<!--                stroke-linejoin="round"-->
-<!--            />-->
-<!--          </svg>-->
-<!--        </span>-->
+      <!--      <div class="relative mx-4 lg:mx-0">-->
+      <!--        <span class="absolute inset-y-0 left-0 pl-3 flex items-center">-->
+      <!--          <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">-->
+      <!--            <path-->
+      <!--                d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"-->
+      <!--                stroke="currentColor"-->
+      <!--                stroke-width="2"-->
+      <!--                stroke-linecap="round"-->
+      <!--                stroke-linejoin="round"-->
+      <!--            />-->
+      <!--          </svg>-->
+      <!--        </span>-->
 
-<!--        <input-->
-<!--            class="form-input w-32 sm:w-64 rounded-md pl-10 pr-4 focus:border-indigo-600"-->
-<!--            type="text"-->
-<!--            placeholder="Search"-->
-<!--        />-->
-<!--      </div>-->
+      <!--        <input-->
+      <!--            class="form-input w-32 sm:w-64 rounded-md pl-10 pr-4 focus:border-indigo-600"-->
+      <!--            type="text"-->
+      <!--            placeholder="Search"-->
+      <!--        />-->
+      <!--      </div>-->
 
     </div>
 
@@ -92,12 +92,9 @@
               class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
           >Products</a
           >
-          <router-link
-              to="/"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
-          >Log out
-          </router-link
-          >
+          <span @click="logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">
+            Log out
+          </span>
         </div>
       </div>
     </div>
@@ -105,17 +102,22 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import { ref } from 'vue'
 import { useSidebar } from '@/hooks/useSidebar'
+import { useAuth } from '@/hooks/useAuth'
 
-export default defineComponent({
+export default {
   setup () {
+
+    const auth = useAuth();
+
     const dropdownOpen = ref(false)
     const { isOpen } = useSidebar()
     return {
       isOpen,
       dropdownOpen,
+      logout: auth.logout
     }
   },
-})
+}
 </script>
