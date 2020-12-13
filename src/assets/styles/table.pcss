@@ -1,0 +1,39 @@
+/*default*/
+table.table {
+    @apply tracking-wider table-auto min-w-full
+}
+
+table.table {
+    & thead {
+        @apply border-b border-gray-200
+    }
+}
+/*end default*/
+
+/*size*/
+table.table-sm {
+    @apply leading-4;
+
+    & thead {
+        @apply text-sm font-medium
+    }
+}
+
+table.table-md {
+    @apply leading-6;
+
+    & thead {
+        @apply text-base font-medium
+    }
+}
+/*end size*/
+
+/*color*/
+
+table.table-blue {
+    & thead {
+        @apply bg-blue-500 text-white
+    }
+}
+
+/*end color*/

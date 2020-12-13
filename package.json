@@ -9,12 +9,9 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.2.1",
-    "autoprefixer": "9",
     "axios": "^0.21.0",
     "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
-    "postcss": "7",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "vue": "^3.0.2",
     "vue-router": "^4.0.0-0",
     "vue3-chartjs": "https://github.com/J-T-McC/vue3-chartjs#main"
@@ -25,9 +22,14 @@
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
+    "autoprefixer": "9",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0-0"
+    "eslint-plugin-vue": "^7.0.0-0",
+    "postcss": "7",
+    "postcss-import": "12.0.1",
+    "postcss-nesting": "^7.0.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "eslintConfig": {
     "root": true,
