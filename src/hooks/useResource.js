@@ -18,10 +18,20 @@ export default function useResource (resource = '') {
     return axios.post(buildRoute(resource), data)
   }
 
+  const update = (id, data = {}) => {
+    return axios.put(buildRoute(resource, id), data)
+  }
+
+  const destroy = (id) => {
+    return axios.delete(buildRoute(resource, id))
+  }
+
   return {
     index,
     show,
     store,
+    update,
+    destroy,
   }
 
 }

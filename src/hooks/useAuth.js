@@ -24,14 +24,12 @@ export function useAuth () {
   }
 
   const checkIfAuthenticated = async () => {
-    if(!userIsAuthenticated.value) {
       try {
         const response = await axios.get(apiEndpoint + '/authenticated')
         userIsAuthenticated.value = response.status >= 200 && response.status < 300
       } catch (error) {
         userIsAuthenticated.value = false
       }
-    }
   }
 
   const fetchCsrf = async () => {

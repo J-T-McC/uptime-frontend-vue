@@ -1,8 +1,6 @@
-import { readonly, ref, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 
-export default function useLocalStore (localStoreKey) {
-
-  const key = readonly(localStoreKey)
+export default function useLocalStore (key) {
 
   let store = ref(JSON.parse(window.localStorage.getItem(key) ?? '{}'))
 

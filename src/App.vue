@@ -10,7 +10,9 @@
 <script>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import ViewHeader from '@/components/ViewHeader'
+import ViewHeader from '@/components/PageHeader'
+import { useAuth } from '@/hooks/useAuth'
+
 const defaultLayout = 'default'
 
 export default {
@@ -19,6 +21,8 @@ export default {
     ViewHeader
   },
   setup () {
+    const auth = useAuth()
+    auth.checkIfAuthenticated()
     const { currentRoute } = useRouter()
     const layout = computed(() => `${currentRoute.value.meta.layout || defaultLayout}-layout`)
     return {
