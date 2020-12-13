@@ -1,19 +1,19 @@
 <template>
-  <label class="block mt-3">
+  <div :class="classes">
     <span v-if="label" class="text-gray-700 text-sm">{{ label }}</span>
-    <input :type='type'
-           :value="value"
+    <input :value="value"
+           :type="type"
            :placeholder="placeholder"
+           :name="name"
            @input="updateValue($event.target.value)"
            class="form-input w-full mt-2 rounded-md focus:border-indigo-600"
     />
-  </label>
+  </div>
 </template>
-
 <script>
 
 export default {
-  name: 'text-input',
+  name: 'VInput',
   props: {
     label: String,
     placeholder: String,
@@ -22,6 +22,14 @@ export default {
     },
     value: {
       default: '',
+      type: String
+    },
+    name: {
+      default: '',
+      type: String
+    },
+    classes: {
+      default: 'mt-1',
       type: String
     }
   },
