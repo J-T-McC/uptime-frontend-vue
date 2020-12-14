@@ -5,12 +5,7 @@
         <fire class="h-10 w-10 text-blue-500"></fire>
         <span class="text-gray-700 font-semibold text-2xl">V-Dashboard</span>
       </div>
-      <v-form :config="loginForm" class="mt-4" @form:submit="login">
-        <div class="flex justify-between items-center mt-4">
-          <div>
-            <a class="block text-sm fontme text-indigo-700 hover:underline" href="#">Forgot your password?</a>
-          </div>
-        </div>
+      <v-form :config="registerForm" class="mt-4" @form:submit="register">
         <div class="mt-6">
           <button
               type="submit"
@@ -27,8 +22,10 @@
 import { ref } from 'vue'
 import { useAuth } from '@/hooks/useAuth.js'
 import { VForm } from '@/components/form'
-import { loginForm } from '@/helpers/forms.js'
+import { registerForm } from '@/helpers/forms.js'
 import { Fire } from 'heroicons/vue/solid'
+import { toastError } from '@/helpers/resource'
+import {useRouter} from 'vue-router'
 
 export default {
   components: {
@@ -40,17 +37,21 @@ export default {
     const email = ref('test@example.com')
     const password = ref('password')
 
-    const login = (result) => {
+    const router = useRouter()
+
+    const register = (result) => {
       auth.fetchCsrf().then(() => {
-        auth.login(result.email, result.password)
+        auth.register(result).then(() => {
+          router.push('/login')
+        }).catch(toastError)
       })
     }
 
     return {
-      login,
+      register,
       email,
       password,
-      loginForm: loginForm()
+      registerForm: registerForm()
     }
   },
 }

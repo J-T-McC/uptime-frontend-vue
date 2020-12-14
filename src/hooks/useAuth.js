@@ -18,6 +18,10 @@ export function useAuth () {
     })
   }
 
+  const register = async (form) => {
+    return axios.post(apiEndpoint + '/register', form)
+  }
+
   const logout = async () => {
     await axios.post(apiEndpoint + '/logout')
     userIsAuthenticated.value = false
@@ -44,7 +48,7 @@ export function useAuth () {
   }
 
   const redirectLogin = () => {
-    return !userIsAuthenticated.value && route.path !== '/login';
+    return !userIsAuthenticated.value && !['/login', '/register'].includes(route.path);
   }
 
   watchEffect(() => {
@@ -58,6 +62,7 @@ export function useAuth () {
 
   return {
     login,
+    register,
     logout,
     fetchCsrf,
     checkIfAuthenticated,
