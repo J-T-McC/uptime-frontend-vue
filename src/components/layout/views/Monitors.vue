@@ -1,9 +1,20 @@
 <template>
   <div>
     <div class="mt-8">
-      <div class="flex flex-col mt-6">
-        <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 
+      <div class="container prose-xl">
+        <p>
+          <create-resource
+              @resource:created="pollResources"
+              header="Create Monitor"
+              resource-name="monitors"
+              :resource-form="monitorForm">
+          </create-resource>
+         a Monitor to stay on top of unexpected downtime and certificate issues
+        </p>
+      </div>
+
+      <div class="flex flex-col mt-6">
           <v-table v-if="monitors.length">
             <v-table-head>
               <v-table-row>
@@ -11,11 +22,7 @@
                 <v-table-th>Uptime Check Enabled</v-table-th>
                 <v-table-th>SSL Check Enabled</v-table-th>
                 <v-table-th>Uptime Status</v-table-th>
-                <v-table-th>
-                  <div class="flex flex-wrap w-full">
-                    <create-monitor @monitor:created="pollResources"></create-monitor>
-                  </div>
-                </v-table-th>
+                <v-table-th></v-table-th>
               </v-table-row>
             </v-table-head>
 
@@ -27,7 +34,7 @@
                   <div class="flex items-center">
                     <div class="ml-4">
                       <div class="text-sm leading-5 font-medium text-gray-900">
-                        {{ monitor.raw_url }}
+                        {{ monitor.url }}
                       </div>
                     </div>
                   </div>
@@ -44,15 +51,30 @@
                           'bg-red-100 text-red-800': monitor.uptime_status === 'down',
                           'bg-gray-100 text-gray-800': monitor.uptime_status === 'not yet checked'
                         }"
-                       class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ">
+                       class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
                        {{ monitor.uptime_status }}
                     </span>
                 </v-table-td>
 
                 <v-table-td>
                   <div class="flex flex-col-2 justify-around">
-                    <edit-monitor @monitor:updated="pollResources" :monitor="monitor"></edit-monitor>
-                    <delete-monitor @monitor:deleted="pollResources" :monitor="monitor"></delete-monitor>
+                    <edit-resource
+                        @resource:updated="pollResources"
+                        header="Edit Monitor"
+                        resource-name="monitors"
+                        :resource-form="monitorForm"
+                        :resource="monitor">
+                    </edit-resource>
+
+                    <delete-resource
+
+                        @resource:deleted="pollResources"
+                        header="Delete Monitor"
+                        resource-name="monitors"
+                        :resource-form="monitorForm"
+                        :resource="monitor">
+                    </delete-resource>
+
                   </div>
                 </v-table-td>
 
@@ -62,7 +84,6 @@
 
           </v-table>
         </div>
-      </div>
     </div>
   </div>
 </template>
@@ -70,9 +91,12 @@
 <script>
 import useResource from '@/hooks/useResource'
 import { ref } from 'vue'
-import CreateMonitor from '@/components/interactions/monitors/CreateMonitor'
-import EditMonitor from '@/components/interactions/monitors/EditMonitor'
-import DeleteMonitor from '@/components/interactions/monitors/DeleteMonitor'
+import CreateResource from '@/components/interaction/resources/CreateResource'
+import EditResource from '@/components/interaction/resources/EditResource'
+import DeleteResource from '@/components/interaction/resources/DeleteResource'
+
+import { monitorForm } from '@/helpers/forms.js'
+
 import {
   VTable,
   VTableHead,
@@ -84,9 +108,9 @@ import {
 
 export default {
   components: {
-    DeleteMonitor,
-    EditMonitor,
-    CreateMonitor,
+    DeleteResource,
+    CreateResource,
+    EditResource,
     VTable,
     VTableHead,
     VTableBody,
@@ -111,7 +135,8 @@ export default {
     return {
       monitors,
       showModal,
-      pollResources
+      pollResources,
+      monitorForm
     }
   },
 }
