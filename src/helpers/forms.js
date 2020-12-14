@@ -1,6 +1,25 @@
 import { VInput, VToggle, VSelect } from '@/components/form'
 
-export function  loginForm() {
+export function toggleTemplate(label = '', name = '', value = false) {
+  return {
+    component: VToggle,
+    label: label,
+    name: name,
+    value: value
+  }
+}
+
+export function inputTemplate(type = '', label = '', name = '', value = '') {
+  return {
+    component: VInput,
+    type: type,
+    label: label,
+    name: name,
+    value: value
+  }
+}
+
+export function loginForm () {
   return {
     inputs: [
       {
@@ -21,7 +40,7 @@ export function  loginForm() {
   }
 }
 
-export function monitorForm() {
+export function monitorForm () {
   return {
     inputs: [
       {
@@ -55,7 +74,7 @@ export function monitorForm() {
   }
 }
 
-export function channelForm() {
+export function channelForm () {
   return {
     inputs: [
       {
@@ -63,11 +82,11 @@ export function channelForm() {
         label: 'Select Integration Type',
         name: 'type',
         options: [
-          {value: 'mail', label: 'E-Mail'},
-          {value: 'slack', label: 'Slack Webhook'},
-          {value: 'discord', label: 'Discord Webhook'},
+          { value: 'mail', label: 'E-Mail' },
+          { value: 'slack', label: 'Slack Webhook' },
+          { value: 'discord', label: 'Discord Webhook' },
         ],
-        value: 'test'
+        value: ''
       },
       {
         component: VInput,
@@ -85,3 +104,4 @@ export function channelForm() {
     ],
   }
 }
+
