@@ -18,7 +18,7 @@
     <template v-slot:toggle>
       <a href="#" class="inline-block text-blue-500" @click="$refs.modalRef.toggleModal">
         <view-grid-add class="h-7 w-7 inline-block"></view-grid-add>
-        Create
+        <slot>Create</slot>
       </a>
     </template>
 
@@ -31,10 +31,10 @@
 </template>
 
 <script>
+import useResource from '@/hooks/useResource'
 import { VForm } from '@/components/form'
 import { ViewGridAdd } from 'heroicons/vue/outline'
 import { toastError } from '@/helpers/resource'
-import useResource from '@/hooks/useResource'
 import { ref } from 'vue'
 
 export default {

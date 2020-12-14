@@ -9,17 +9,19 @@
               header="Create Channel"
               resource-name="channels"
               :resource-form="channelForm">
+            Add
           </create-resource>
-          an integrations to alert you when a disaster strikes
+          notification channels to alert you when something blows up
         </p>
       </div>
 
       <div class="flex flex-wrap mt-6" v-if="channels.length">
-        <basic-card v-for="channel in channels"
-                    :key="channel.id"
-                    :header="channel.type"
-                    :icon="channelTypeToIconComponent[channel.type] ?? Bell"
-                    :description="channel.description">
+        <basic-card
+            v-for="channel in channels"
+            :key="channel.id"
+            :header="channel.type"
+            :icon="channelTypeToIconComponent[channel.type] ?? Bell"
+            :description="channel.description">
 
           <template v-slot:header>
             <edit-resource
