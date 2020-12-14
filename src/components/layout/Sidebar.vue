@@ -23,6 +23,7 @@
             v-bind:key="route.name"
             :name="route.name"
             :path="route.path"
+            :icon="route.meta.icon ?? null"
             :class="[$route.name === route.name ? activeClass : inactiveClass]"
         ></nav-item>
       </nav>
