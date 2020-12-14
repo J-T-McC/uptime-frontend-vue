@@ -6,7 +6,7 @@
            :placeholder="placeholder"
            :name="name"
            @input="updateValue($event.target.value)"
-           class="form-input w-full mt-2 rounded-md focus:border-indigo-600"
+           class="form-input w-full mt-2 rounded-md border-gray-300 focus:border-blue-600"
     />
   </div>
 </template>

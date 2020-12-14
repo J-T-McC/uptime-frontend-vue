@@ -4,7 +4,7 @@
         v-for="(input, i) in config.inputs"
         :is="input.component"
         v-bind:key="getInputName(input, i)"
-        v-bind="input"
+        v-bind="getPropsToBind(input)"
         v-model:value="vModel[getInputName(input, i)]">
       {{ input }}
     </component>
@@ -14,7 +14,6 @@
 
 <script>
 
-import { VInput, VToggle } from '@/components/form'
 import { watch, reactive } from 'vue'
 
 export default {
@@ -30,6 +29,17 @@ export default {
 
     const getInputName = (input, index) => {
       return input.name ?? `${props.defaultNamePrefix}-${index}`
+    }
+
+    //bind all input props to dynamic component by default, excluding conflicting items
+    const restrictedBinds = ['component']
+    const getPropsToBind = (input) => {
+      return Object.keys(input)
+          .filter(key => !restrictedBinds.includes(key))
+          .reduce((obj, key) => {
+            obj[key] = input[key];
+            return obj;
+          }, {});
     }
 
     const vModel = reactive({})
@@ -49,17 +59,10 @@ export default {
 
     return {
       vModel,
+      getPropsToBind,
       submit,
       getInputName
     }
   },
-  components: {
-    VInput,
-    VToggle,
-  }
 }
 </script>
-
-<style scoped>
-
-</style>
