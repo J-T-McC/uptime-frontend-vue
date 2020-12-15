@@ -35,6 +35,7 @@ import { Link as LinkIcon } from 'heroicons/vue/outline'
 import useResource from '@/hooks/useResource'
 import { ref } from 'vue'
 import { toastError } from '@/helpers/resource'
+import { useToast } from 'vue-toastification'
 
 export default {
   name: 'RelateResources',
@@ -57,6 +58,7 @@ export default {
     const confirm = (form) => {
       submit(form).then((response) => {
         modalRef.value.toggleModal()
+        useToast().info("Resource updated")
         emit('resource:updated', response)
       }).catch(toastError)
     }

@@ -19,26 +19,27 @@
         <basic-card
             v-for="channel in channels"
             :key="channel.id"
-            :header="channel.type"
+            :title="channel.type"
             :icon="channelTypeToIconComponent[channel.type] ?? Bell"
             :description="channel.description">
 
           <template v-slot:header>
-            <edit-resource
-                @resource:updated="pollResources"
-                header="Edit Channel"
-                resource-name="channels"
-                :resource-form="channelForm"
-                :resource="channel">
-            </edit-resource>
+            <div class="flex">
+              <edit-resource
+                  @resource:updated="pollResources"
+                  header="Edit Channel"
+                  resource-name="channels"
+                  :resource-form="channelForm"
+                  :resource="channel">
+              </edit-resource>
 
-            <delete-resource
-                @resource:deleted="pollResources"
-                header="Delete Channel"
-                resource-name="channels"
-                :resource-form="channelForm"
-                :resource="channel">
-            </delete-resource>
+              <delete-resource
+                  @resource:deleted="pollResources"
+                  header="Delete Channel"
+                  resource-name="channels"
+                  :resource="channel">
+              </delete-resource>
+            </div>
           </template>
 
         </basic-card>
@@ -56,8 +57,9 @@ import DeleteResource from '@/components/interaction/resources/DeleteResource'
 
 import { channelForm } from '@/helpers/forms'
 import { Discord, Slack } from '@/components/svg'
-import { Mail, Bell } from 'heroicons/vue/outline'
+import { Mail, Bell } from 'heroicons/vue/solid'
 import { ref } from 'vue'
+import { toastError } from '@/helpers/resource'
 
 const channelTypeToIconComponent = {
   'mail': Mail,
@@ -79,7 +81,7 @@ export default {
     const pollResources = () => {
       resource.index().then((response) => {
         channels.value = response.data.data
-      })
+      }).catch(toastError)
     }
 
     pollResources()

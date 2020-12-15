@@ -74,7 +74,6 @@
                       @resource:deleted="pollResources"
                       header="Delete Monitor"
                       resource-name="monitors"
-                      :resource-form="monitorForm"
                       :resource="monitor">
                   </delete-resource>
 
@@ -90,14 +89,13 @@
 
 <script>
 import useResource from '@/hooks/useResource'
-import { ref } from 'vue'
-
 import CreateResource from '@/components/interaction/resources/CreateResource'
 import EditResource from '@/components/interaction/resources/EditResource'
 import DeleteResource from '@/components/interaction/resources/DeleteResource'
-import RelateResources from '@/components/interaction/resources/RelateResources'
 
 import { monitorForm, toggleTemplate } from '@/helpers/forms.js'
+import { toastError } from '@/helpers/resource'
+import { ref } from 'vue'
 
 import {
   VTable,
@@ -107,6 +105,7 @@ import {
   VTableRow,
   VTableTh
 } from '@/components/table'
+import RelateResources from '@/components/interaction/resources/RelateResources'
 
 export default {
   components: {
@@ -131,7 +130,7 @@ export default {
     const pollResources = () => {
       const monitorPromise = monitorResource.index().then((response) => {
         monitors.value = response.data.data
-      })
+      }).catch(toastError)
 
       const channelPromise = channelResource.index().then((response) => {
         channels.value = response.data.data

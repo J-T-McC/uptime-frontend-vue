@@ -22,7 +22,7 @@
 
     <template v-slot:toggle>
       <a @click="$refs.modalRef.show" href="#">
-        <pencil-alt class='text-blue-500 h-5 w-5'></pencil-alt>
+        <pencil-alt class='text-blue-400 h-5 w-5'></pencil-alt>
       </a>
     </template>
 
@@ -35,6 +35,7 @@ import { PencilAlt } from 'heroicons/vue/outline'
 import useResource from '@/hooks/useResource'
 import { ref } from 'vue'
 import { toastError } from '@/helpers/resource'
+import { useToast } from 'vue-toastification'
 
 export default {
   name: 'EditResource',
@@ -67,6 +68,7 @@ export default {
     const confirm = (form) => {
       submit(form).then((response) => {
         modalRef.value.toggleModal()
+        useToast().info("Resource updated")
         emit('resource:updated', response)
       }).catch(toastError)
     }

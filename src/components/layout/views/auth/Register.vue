@@ -14,6 +14,12 @@
           </button>
         </div>
       </v-form>
+
+      <div class="flex justify-between items-start mt-4">
+        <router-link to="/login">
+          <a class="block text-sm fontme text-blue-400 hover:underline" href="#">Return to login</a>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>

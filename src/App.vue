@@ -1,7 +1,7 @@
 <template>
   <component :is="layout">
     <view-header v-if="layout === 'default-layout'">
-      {{$route.name}}
+      {{ $route.name }}
     </view-header>
     <router-view/>
   </component>
@@ -21,9 +21,11 @@ export default {
     ViewHeader
   },
   setup () {
-    const auth = useAuth()
-    auth.checkIfAuthenticated()
     const { currentRoute } = useRouter()
+    const auth = useAuth()
+
+    auth.checkIfAuthenticated()
+
     const layout = computed(() => `${currentRoute.value.meta.layout || defaultLayout}-layout`)
     return {
       layout
