@@ -46,15 +46,14 @@
                 </template>
 
                 <template v-slot:title>
-                  <h4 class="font-semibold text-gray-700 normal-case">
+                  <h4>
                     <span>{{ event.category }} - {{ event.status }}: </span>
                     <small class="italic font-normal">{{formatDate(event.created_at)}}</small>
                   </h4>
-
                 </template>
 
                 <template v-slot:description>
-                  <span>{{ event.error }}</span>
+                  <span class="text-sm">{{ event.error }}</span>
                 </template>
               </basic-card>
 

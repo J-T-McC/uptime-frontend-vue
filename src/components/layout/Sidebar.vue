@@ -13,6 +13,7 @@
 
       <div class="flex items-center justify-center mt-8">
         <div class="flex items-center">
+          <logo class="bg-white rounded"></logo>
           <span class="text-white text-2xl mx-2 font-semibold">Uptime</span>
         </div>
       </div>
@@ -36,9 +37,11 @@ import { ref, computed } from 'vue'
 import { useSidebar } from '@/hooks/useSidebar'
 import NavItem from '@/components/nav/NavItem'
 import { useRouter } from 'vue-router'
+import Logo from '@/components/svg/Logo'
 
 export default {
   components: {
+    Logo,
     NavItem
   },
   setup () {

@@ -22,7 +22,7 @@
 
     <template v-slot:toggle>
       <a @click="$refs.modalRef.show" href="#">
-        <pencil-alt class='text-blue-400 h-5 w-5'></pencil-alt>
+        <pencil-alt class='text-blue-400 w-4 h-4 '></pencil-alt>
       </a>
     </template>
 

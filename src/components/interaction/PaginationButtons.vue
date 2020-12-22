@@ -100,6 +100,6 @@ export default {
 
 <style scoped>
   .active {
-    @apply bg-blue-400 text-white;
+    @apply bg-blue-500 text-white;
   }
 </style>

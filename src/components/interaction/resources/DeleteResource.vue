@@ -11,7 +11,7 @@
 
     <template v-slot:toggle>
       <a @click="$refs.modalRef.show" href="#">
-        <trash class="text-gray-600 w-5 h-5"></trash>
+        <trash class="text-gray-600 4-5 h-4"></trash>
       </a>
     </template>
 

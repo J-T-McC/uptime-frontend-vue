@@ -1,6 +1,6 @@
 <template>
   <div class="w-full px-2 sm:w-1/2 xl:w-1/3 mb-2 mt-2">
-    <div class="flex items-center px-4 py-3 shadow-sm rounded-md bg-white relative">
+    <div class="flex items-center px-4 pt-1 pb-1 shadow-sm rounded-md bg-white relative">
 
       <div class="absolute top-2 right-2">
         <slot name="header"></slot>

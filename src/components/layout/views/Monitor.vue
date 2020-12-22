@@ -5,7 +5,7 @@
         <div class="flex flex-wrap">
 
           <div class="w-full m-3" v-show="header">
-            <h2 class="bg-white p-5 w-full border-b text-gray-900 font-semibold text-xl rounded shadow-md">
+            <h2 class="bg-white p-5 w-full border-b text-gray-900 text-xl rounded shadow-md">
               {{ header }}
             </h2>
           </div>
@@ -52,15 +52,14 @@
                 </template>
 
                 <template v-slot:title>
-                  <h4 class="font-semibold text-gray-700 normal-case">
+                  <h4>
                     <span>{{ event.category }} - {{ event.status }}: </span>
                     <small class="italic font-normal">{{ formatDate(event.created_at) }}</small>
                   </h4>
-
                 </template>
 
                 <template v-slot:description>
-                  <span>{{ event.error }}</span>
+                  <span class="text-sm">{{ event.error }}</span>
                 </template>
               </basic-card>
 
@@ -120,10 +119,8 @@ export default {
     const pie = reactive({})
     const latestEvents = reactive({})
     const latestEventsResource = useResource('latest-monitor-events')
-
     const route = useRoute()
     const resourceID = route.params.id
-
     const header = ref(null)
 
     getPast90Days('show', resourceID).then(result => pie.value = result)

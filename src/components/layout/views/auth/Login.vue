@@ -2,8 +2,8 @@
   <div class="flex justify-center items-center h-screen px-6">
     <div class="p-6 max-w-sm w-full bg-white shadow-md rounded-md">
       <div class="flex justify-center items-center">
-        <fire class="h-10 w-10 text-blue-500"></fire>
-        <span class="text-gray-700 font-semibold text-2xl">V-Dashboard</span>
+        <logo></logo>
+        <span class="text-gray-700 font-semibold text-2xl">Uptime</span>
       </div>
 
       <div v-if="showVerify" class="prose pt-5">
@@ -40,13 +40,13 @@ import { ref } from 'vue'
 import { useAuth } from '@/hooks/useAuth.js'
 import { VForm } from '@/components/form'
 import { loginForm } from '@/helpers/forms.js'
-import { Fire } from 'heroicons/vue/solid'
 import { useToast } from 'vue-toastification'
+import Logo from '@/components/svg/Logo'
 
 export default {
   components: {
+    Logo,
     VForm,
-    Fire
   },
   setup () {
     const auth = useAuth()

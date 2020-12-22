@@ -3,7 +3,7 @@
       class="flex items-center duration-200 mt-4 py-2 px-6 border-l-4"
       :to="path">
 
-    <component class="w-5 h-5" v-if="icon" :is="icon"></component>
+    <component class="w-4 h-4" v-if="icon" :is="icon"></component>
 
     <span class="mx-4">{{ name }}</span>
   </router-link>
