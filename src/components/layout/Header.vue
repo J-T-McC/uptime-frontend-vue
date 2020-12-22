@@ -1,5 +1,5 @@
 <template>
-  <header class="flex justify-between items-center py-4 px-6 bg-white border-b-4 border-blue-500">
+  <header class="flex justify-between items-center py-4 px-6 bg-white">
     <div class="flex items-center">
 
       <!-- Mobile Nav Toggle -->
@@ -38,23 +38,41 @@
       </div>
     </div>
   </header>
+  <div class="relative w-full">
+    <div class="overflow-hidden h-1 mb-4 text-xs flex bg-blue-300">
+      <div :style="`width: ${progressWidth}%; opacity: ${progressWidth * 0.01}`"
+           class="transition-all duration-1000 ease-out shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500">
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { useSidebar } from '@/hooks/useSidebar'
 import { useAuth } from '@/hooks/useAuth'
 import { MenuAlt2, Cog } from 'heroicons/vue/outline'
+import useResource from '@/hooks/useResource'
 
 export default {
   components: { MenuAlt2, Cog },
   setup () {
+    const progressWidth = ref(0)
+    const { currentRequests } = useResource()
+
+    watchEffect(() => {
+      //attempt to get more interesting movement in progress bar
+      const denominator = currentRequests.value > 1 ? currentRequests.value : 2
+      progressWidth.value = !currentRequests.value ? 100 : Math.round(100 / denominator);
+    })
+
     const auth = useAuth()
     const dropdownOpen = ref(false)
     const { isOpen } = useSidebar()
     return {
       isOpen,
       dropdownOpen,
+      progressWidth,
       logout: auth.logout
     }
   },
