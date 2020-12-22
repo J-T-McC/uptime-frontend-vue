@@ -1,11 +1,13 @@
 /*default*/
 table.table {
-    @apply tracking-wider table-auto min-w-full
-}
+    @apply tracking-wider table-auto min-w-full;
 
-table.table {
     & thead {
-        @apply border-b border-gray-200
+        @apply border-b border-gray-200 bg-white;
+
+        & th {
+            @apply font-semibold;
+        }
     }
 }
 /*end default*/
@@ -26,6 +28,7 @@ table.table-md {
         @apply text-base font-medium
     }
 }
+
 /*end size*/
 
 /*color*/
