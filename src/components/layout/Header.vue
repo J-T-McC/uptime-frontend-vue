@@ -39,7 +39,7 @@
     </div>
   </header>
   <div class="relative w-full">
-    <div class="overflow-hidden h-1 mb-4 text-xs flex bg-blue-300">
+    <div class="overflow-hidden h-1 text-xs flex bg-blue-300">
       <div :style="`width: ${progressWidth}%; opacity: ${progressWidth * 0.01}`"
            class="transition-all duration-1000 ease-out shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500">
       </div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mt-8">
+    <div class="mt-8 relative">
 
       <div class="container prose-xl">
         <p>
@@ -15,34 +15,40 @@
         </p>
       </div>
 
-      <div class="flex flex-wrap mt-6" v-if="channels.length">
-        <basic-card
-            v-for="channel in channels"
-            :key="channel.id"
-            :title="channel.type"
-            :icon="channelTypeToIconComponent[channel.type] ?? Bell"
-            :description="channel.description">
+      <div class="flex flex-wrap mt-6">
+        <div class="h-56" v-if="!channels">
+          <spinner></spinner>
+        </div>
 
-          <template v-slot:header>
-            <div class="flex">
-              <edit-resource
-                  @resource:updated="pollResources"
-                  header="Edit Channel"
-                  resource-name="channels"
-                  :resource-form="channelForm"
-                  :resource="channel">
-              </edit-resource>
+        <template v-if="channels && channels.length">
+          <basic-card
+              v-for="channel in channels"
+              :key="channel.id"
+              :title="channel.type"
+              :icon="channelTypeToIconComponent[channel.type] ?? Bell"
+              :description="channel.description">
 
-              <delete-resource
-                  @resource:deleted="pollResources"
-                  header="Delete Channel"
-                  resource-name="channels"
-                  :resource="channel">
-              </delete-resource>
-            </div>
-          </template>
+            <template v-slot:header>
+              <div class="flex">
+                <edit-resource
+                    @resource:updated="pollResources"
+                    header="Edit Channel"
+                    resource-name="channels"
+                    :resource-form="channelForm"
+                    :resource="channel">
+                </edit-resource>
 
-        </basic-card>
+                <delete-resource
+                    @resource:deleted="pollResources"
+                    header="Delete Channel"
+                    resource-name="channels"
+                    :resource="channel">
+                </delete-resource>
+              </div>
+            </template>
+
+          </basic-card>
+        </template>
       </div>
     </div>
   </div>
@@ -60,6 +66,7 @@ import { Discord, Slack } from '@/components/svg'
 import { Mail, Bell } from 'heroicons/vue/solid'
 import { ref } from 'vue'
 import { toastError } from '@/helpers/resource'
+import Spinner from '@/components/Spinner'
 
 const channelTypeToIconComponent = {
   'mail': Mail,
@@ -69,6 +76,7 @@ const channelTypeToIconComponent = {
 
 export default {
   components: {
+    Spinner,
     CreateResource,
     DeleteResource,
     EditResource,
@@ -76,7 +84,7 @@ export default {
   },
   setup () {
     const resource = useResource('channels')
-    const channels = ref([])
+    const channels = ref(null)
 
     const pollResources = () => {
       resource.index().then((response) => {

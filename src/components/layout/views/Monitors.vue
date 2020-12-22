@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mt-8">
+    <div class="mt-8 relative">
 
       <div class="container prose-xl">
         <p>
@@ -16,24 +16,29 @@
       </div>
 
       <div class="flex flex-col mt-6">
-        <v-table v-if="monitors.length">
+        <div class="h-56" v-if="!monitors">
+          <spinner></spinner>
+        </div>
+        <v-table v-if="monitors && monitors.length">
           <v-table-head>
             <v-table-row>
               <v-table-th>Endpoint</v-table-th>
               <v-table-th>Stats</v-table-th>
+              <v-table-th>Uptime Status</v-table-th>
               <v-table-th>Uptime Check Enabled</v-table-th>
               <v-table-th>SSL Check Enabled</v-table-th>
-              <v-table-th>Uptime Status</v-table-th>
               <v-table-th>Options</v-table-th>
             </v-table-row>
           </v-table-head>
           <v-table-body>
             <v-table-row v-for="(monitor) in monitors" :key="`${monitor.name}-row`">
+
               <v-table-td>
                 <div class="text-sm leading-5 font-medium text-gray-900 flex justify-left h-full text-left">
                   <a target="_blank" :href="monitor.url">{{ monitor.url }}</a>
                 </div>
               </v-table-td>
+
               <v-table-td>
                 <div class="flex justify-around">
                   <router-link class="text-blue-400" :to="`/monitors/${monitor.id}`">
@@ -41,8 +46,8 @@
                   </router-link>
                 </div>
               </v-table-td>
-              <v-table-td class="text-center"> {{ monitor.uptime_check_enabled }}</v-table-td>
-              <v-table-td class="text-center"> {{ monitor.certificate_check_enabled }}</v-table-td>
+
+
               <v-table-td class="text-center">
                    <span
                        :class="{
@@ -62,6 +67,11 @@
                    </span>
 
               </v-table-td>
+
+              <v-table-td class="text-center"> {{ monitor.uptime_check_enabled }}</v-table-td>
+
+              <v-table-td class="text-center"> {{ monitor.certificate_check_enabled }}</v-table-td>
+
               <v-table-td>
                 <div class="flex justify-around">
 
@@ -120,9 +130,11 @@ import {
   VTableTh,
 } from '@/components/table'
 import RelateResources from '@/components/interaction/resources/RelateResources'
+import Spinner from '@/components/Spinner'
 
 export default {
   components: {
+    Spinner,
     RelateResources,
     DeleteResource,
     CreateResource,
@@ -139,7 +151,7 @@ export default {
     const monitorResource = useResource('monitors')
     const channelResource = useResource('channels')
 
-    const monitors = ref([])
+    const monitors = ref(null)
     const channels = ref([])
 
     const pollResources = () => {

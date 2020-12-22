@@ -1,8 +1,5 @@
 <template>
   <component :is="layout">
-    <view-header v-if="layout === 'default-layout'">
-      {{ $route.name }}
-    </view-header>
     <router-view/>
   </component>
 </template>

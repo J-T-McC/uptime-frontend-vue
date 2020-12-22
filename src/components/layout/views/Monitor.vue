@@ -4,13 +4,13 @@
       <div class="container">
         <div class="flex flex-wrap">
 
-          <div class="w-full m-3">
-            <h2 class="bg-white p-5 w-full border-b text-gray-900 font-semibold text-xl">
+          <div class="w-full m-3" v-show="header">
+            <h2 class="bg-white p-5 w-full border-b text-gray-900 font-semibold text-xl rounded shadow-md">
               {{ header }}
             </h2>
           </div>
 
-          <container v-if="pie.value" class="md:w-1/2">
+          <container :loading="!pie.value" class="md:w-1/2">
             <template v-slot:header>
               Past 90 days Uptime
             </template>
@@ -21,7 +21,7 @@
             </template>
           </container>
 
-          <container v-if="trend.value" class="md:w-1/2">
+          <container :loading="!trend.value" class="md:w-1/2">
             <template v-slot:header>
               Weekly trended Uptime
             </template>
@@ -32,12 +32,12 @@
             </template>
           </container>
 
-          <container v-if="latestEvents.value">
+          <container :loading="!latestEvents.value">
             <template v-slot:header>
               Recent Events
             </template>
 
-            <template v-slot:body>
+            <template v-slot:body v-if="latestEvents.value">
               <basic-card
                   class="xl:w-full lg:w-full sm:w-full lg:w-full mb-0"
                   v-for="event in latestEvents.value"
