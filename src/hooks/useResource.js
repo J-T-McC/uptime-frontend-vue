@@ -6,23 +6,27 @@ export default function useResource (resource = '') {
     return apiEndpoint + '/' + args.join('/')
   }
 
-  const index = async () => {
-    return axios.get(buildRoute(resource))
+  const index = async (params = {}) => {
+    return axios.get(buildRoute(resource), {
+      params
+    })
   }
 
-  const show = (id) => {
-    return axios.get(buildRoute(resource, id))
+  const show = async (id, params = {}) => {
+    return axios.get(buildRoute(resource, id), {
+      params
+    })
   }
 
-  const store = (data = {}) => {
+  const store = async (data = {}) => {
     return axios.post(buildRoute(resource), data)
   }
 
-  const update = (id, data = {}) => {
+  const update = async (id, data = {}) => {
     return axios.put(buildRoute(resource, id), data)
   }
 
-  const destroy = (id) => {
+  const destroy = async (id) => {
     return axios.delete(buildRoute(resource, id))
   }
 
