@@ -15,7 +15,9 @@ export function useAuth () {
     return axios
       .get(apiEndpoint + '/authenticated')
       .then(({ data }) => user.value = data.data ?? null)
-      .catch(error => console.log(error))
+      .catch(() => {
+        user.value = false
+      })
   }
 
   const isAuthRoute = () => {
