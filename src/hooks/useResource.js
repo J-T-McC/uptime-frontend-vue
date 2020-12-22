@@ -1,4 +1,20 @@
 import { axios, apiEndpoint } from '@/helpers/api.js'
+import {ref} from 'vue'
+
+const currentRequests = ref(0)
+
+axios.interceptors.request.use((request) =>  {
+  currentRequests.value++
+  return request
+})
+
+axios.interceptors.response.use((request) => {
+  currentRequests.value--
+  return request
+}, (error) => {
+  currentRequests.value--
+  return error
+})
 
 export default function useResource (resource = '') {
 
@@ -36,6 +52,7 @@ export default function useResource (resource = '') {
     store,
     update,
     destroy,
+    currentRequests
   }
 
 }
