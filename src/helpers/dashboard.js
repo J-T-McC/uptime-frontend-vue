@@ -98,9 +98,8 @@ const getPast90Days = async (method = 'index', resourceID = null) => {
   const { seriesData, seriesLabels } = getChartJSSeries(data)
 
   const backgroundColors = {
-    OFFLINE: tailwindConfig.theme.colors.red['200'],
-    RECOVERED: tailwindConfig.theme.colors.blue['300'],
-    ONLINE: tailwindConfig.theme.colors.blue['400'],
+    Down: tailwindConfig.theme.colors.red['200'],
+    Up: tailwindConfig.theme.colors.blue['400'],
   }
 
   return {
