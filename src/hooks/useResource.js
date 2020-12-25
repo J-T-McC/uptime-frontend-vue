@@ -1,8 +1,12 @@
 import { axios, apiEndpoint } from '@/helpers/api.js'
 import {ref} from 'vue'
 
-const currentRequests = ref(0)
+//increment & decrement request counter on axios requests and response
 
+//todo move to axios hook
+// add default error handling
+// add redirect login if response returns as unauthenticated
+const currentRequests = ref(0)
 axios.interceptors.request.use((request) =>  {
   currentRequests.value++
   return request
@@ -13,7 +17,7 @@ axios.interceptors.response.use((request) => {
   return request
 }, (error) => {
   currentRequests.value--
-  return error
+  return Promise.reject(error);
 })
 
 export default function useResource (resource = '') {
