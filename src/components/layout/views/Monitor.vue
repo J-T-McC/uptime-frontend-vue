@@ -4,9 +4,9 @@
       <div class="container">
         <div class="flex flex-wrap">
 
-          <div class="w-full m-3" v-show="header">
+          <div class="w-full m-3" v-if="monitor.value">
             <h2 class="bg-white p-5 w-full border-b text-gray-900 text-xl rounded shadow-md">
-              {{ header }}
+              {{ monitor.value.url }}
             </h2>
           </div>
 
@@ -83,7 +83,7 @@ import Vue3ChartJs from 'vue3-chartjs'
 import Container from '@/components/card/Container'
 import BasicCard from '@/components/card/BasicCard'
 import PaginationButtons from '@/components/interaction/PaginationButtons'
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import useResource from '@/hooks/useResource'
 import { getTrended, getPast90Days } from '@/helpers/dashboard'
 import { ShieldExclamation, ArrowCircleUp, ArrowCircleDown } from 'heroicons/vue/solid'
@@ -118,23 +118,22 @@ export default {
     const trend = reactive({})
     const pie = reactive({})
     const latestEvents = reactive({})
-    const latestEventsResource = useResource('latest-monitor-events')
     const route = useRoute()
     const resourceID = route.params.id
-    const header = ref(null)
+    const monitor = reactive({})
+
+    useResource('monitors').show(resourceID).then(({data}) => {
+      monitor.value = data.data[0] ?? null
+    })
 
     getPast90Days('show', resourceID).then(result => pie.value = result)
     getTrended('show', resourceID).then(result => trend.value = result)
 
     const paginationMeta = reactive({})
     const loadRecentEvents = (params) => {
-      latestEventsResource.show(resourceID, params).then(({ data }) => {
+      useResource('latest-monitor-events').show(resourceID, params).then(({ data }) => {
         latestEvents.value = data.data
         paginationMeta.value = data.meta
-
-        if (!header.value) {
-          header.value = latestEvents.value.length ? latestEvents.value[0].monitor.url : 'Unknown Resource'
-        }
       })
     }
 
@@ -149,7 +148,7 @@ export default {
       pie,
       latestEvents,
       paginationMeta,
-      header,
+      monitor,
       eventToIconMap,
       eventToColorMap,
       loadRecentEvents,
