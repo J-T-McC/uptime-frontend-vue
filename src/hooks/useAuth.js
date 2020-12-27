@@ -7,7 +7,6 @@ const localStore = useLocalStore('auth')
 const user = ref(localStore.get('user', false))
 
 export function useAuth () {
-  const authRoutes = ['/login', '/register']
   const router = useRouter()
   const route = useRoute()
 
@@ -21,7 +20,7 @@ export function useAuth () {
   }
 
   const isAuthRoute = () => {
-    return authRoutes.includes(route.path)
+    return route.meta.auth ?? false
   }
 
   const login = (data) => {
@@ -32,6 +31,14 @@ export function useAuth () {
 
   const register = (data) => {
     return axios.post(apiEndpoint + '/register', data)
+  }
+
+  const forgotPassword = (data) => {
+    return axios.post(apiEndpoint + '/forgot-password', data)
+  }
+
+  const resetPassword = (data) => {
+    return axios.post(apiEndpoint + '/reset-password', data)
   }
 
   const logout = () => {
@@ -66,21 +73,24 @@ export function useAuth () {
 
   watchEffect(() => {
     localStore.set('user', user.value)
-    if (shouldRedirectRoot()) {
-      router.push('/')
-    } else if (shouldRedirectLogin()) {
-      router.push('/login')
+    if(route.name) {
+      if (shouldRedirectRoot()) {
+        router.push('/')
+      } else if (shouldRedirectLogin()) {
+        router.push('/login')
+      }
     }
   })
 
   return {
-    login,
-    register,
-    logout,
     fetchCsrf,
-    checkIfAuthenticated,
+    register,
+    login,
+    logout,
+    forgotPassword,
+    resetPassword,
     resendVerificationEmail,
-
+    checkIfAuthenticated,
     isAuthRoute,
     userIsAuthenticated,
     userIsVerified,

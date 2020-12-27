@@ -5,12 +5,13 @@
         <logo></logo>
         <span class="text-gray-700 font-semibold text-2xl">Uptime</span>
       </div>
-      <v-form :config="registerForm" class="mt-4" @form:submit="register">
+
+      <v-form :config="resetPasswordFormConfig" class="mt-4" @form:submit="resetPassword">
         <div class="mt-6">
           <button
               type="submit"
               class="py-2 px-4 text-center bg-blue-500 rounded-md w-full text-white text-sm hover:bg-indigo-400">
-            Register
+            Sign in
           </button>
         </div>
       </v-form>
@@ -27,9 +28,9 @@
 <script>
 import { useAuth } from '@/hooks/useAuth.js'
 import { VForm } from '@/components/form'
-import { registerForm } from '@/helpers/forms.js'
+import { resetPasswordForm } from '@/helpers/forms.js'
 import { toastMessage } from '@/helpers/resource'
-import { useRouter } from 'vue-router'
+import {useRouter, useRoute} from 'vue-router'
 import Logo from '@/components/svg/Logo'
 
 export default {
@@ -40,18 +41,29 @@ export default {
   setup () {
     const auth = useAuth()
     const router = useRouter()
+    const route = useRoute()
+    const token = route.params.token
+    const resetPasswordFormConfig = resetPasswordForm()
 
-    const register = (result) => {
+    resetPasswordFormConfig.inputs.map((item)=> {
+      if(item.name === 'token') {
+        item.value = token
+      }
+      return item
+    })
+
+    const resetPassword = (result) => {
       auth.fetchCsrf().then(() => {
-        auth.register(result).then(() => {
+        auth.resetPassword(result).then((response) => {
+          toastMessage(response)
           router.push('/login')
         }).catch(toastMessage)
       })
     }
 
     return {
-      register,
-      registerForm: registerForm()
+      resetPasswordFormConfig,
+      resetPassword,
     }
   },
 }

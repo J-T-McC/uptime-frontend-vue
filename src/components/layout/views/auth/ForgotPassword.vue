@@ -5,12 +5,13 @@
         <logo></logo>
         <span class="text-gray-700 font-semibold text-2xl">Uptime</span>
       </div>
-      <v-form :config="registerForm" class="mt-4" @form:submit="register">
+
+      <v-form :config="forgotPasswordForm" class="mt-4" @form:submit="forgotPassword">
         <div class="mt-6">
           <button
               type="submit"
               class="py-2 px-4 text-center bg-blue-500 rounded-md w-full text-white text-sm hover:bg-indigo-400">
-            Register
+            Submit
           </button>
         </div>
       </v-form>
@@ -25,11 +26,12 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import { useAuth } from '@/hooks/useAuth.js'
 import { VForm } from '@/components/form'
-import { registerForm } from '@/helpers/forms.js'
+import { forgotPasswordForm } from '@/helpers/forms.js'
 import { toastMessage } from '@/helpers/resource'
-import { useRouter } from 'vue-router'
+import {useRouter} from 'vue-router'
 import Logo from '@/components/svg/Logo'
 
 export default {
@@ -39,19 +41,25 @@ export default {
   },
   setup () {
     const auth = useAuth()
+    const email = ref('test@example.com')
+    const password = ref('password')
+
     const router = useRouter()
 
-    const register = (result) => {
+    const forgotPassword = (result) => {
       auth.fetchCsrf().then(() => {
-        auth.register(result).then(() => {
+        auth.forgotPassword(result).then((response) => {
+          toastMessage(response)
           router.push('/login')
         }).catch(toastMessage)
       })
     }
 
     return {
-      register,
-      registerForm: registerForm()
+      forgotPassword,
+      email,
+      password,
+      forgotPasswordForm: forgotPasswordForm()
     }
   },
 }

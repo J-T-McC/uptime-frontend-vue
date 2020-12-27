@@ -24,7 +24,7 @@ export function loginForm () {
     inputs: [
       {
         component: VInput,
-        type: 'text',
+        type: 'email',
         label: 'Email',
         name: 'email',
         value: 'test@example.com'
@@ -74,6 +74,56 @@ export function registerForm() {
     ]
   }
 }
+
+export function forgotPasswordForm() {
+  return {
+    inputs: [
+      {
+        component: VInput,
+        type: 'email',
+        label: 'Email',
+        name: 'email',
+        value: ''
+      },
+    ]
+  }
+}
+
+export function resetPasswordForm() {
+  return {
+    inputs: [
+      {
+        component: VInput,
+        type: 'email',
+        label: 'Email',
+        name: 'email',
+        value: ''
+      },
+      {
+        component: VInput,
+        type: 'password',
+        label: 'Password',
+        name: 'password',
+        value: ''
+      },
+      {
+        component: VInput,
+        type: 'password',
+        label: 'Confirm Password',
+        name: 'password_confirmation',
+        value: ''
+      },
+      {
+        component: VInput,
+        type: 'hidden',
+        name: 'token',
+        value: ''
+      },
+    ]
+  }
+}
+
+
 
 export function monitorForm () {
   return {

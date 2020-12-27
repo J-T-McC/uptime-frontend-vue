@@ -21,9 +21,10 @@
           <router-link to="/register">
             <a class="block text-sm fontme text-blue-400 hover:underline" href="#">Register</a>
           </router-link>
-          <div>
+
+          <router-link to="/forgot-password">
             <a class="block text-sm fontme text-blue-400 hover:underline" href="#">Forgot your password?</a>
-          </div>
+          </router-link>
         </div>
         <div class="mt-6">
           <button type="submit" class="py-2 px-4 text-center bg-blue-500 rounded-md w-full text-white text-sm hover:bg-indigo-400">
@@ -50,8 +51,6 @@ export default {
   },
   setup () {
     const auth = useAuth()
-    const email = ref('test@example.com')
-    const password = ref('password')
     const showVerify = ref(false)
 
     const login = (result) => {
@@ -68,8 +67,6 @@ export default {
     return {
       login,
       requestVerify,
-      email,
-      password,
       showVerify,
       loginForm: loginForm()
     }
