@@ -1,21 +1,36 @@
 import { useToast } from 'vue-toastification'
 
-export const toastError = (error) => {
-  const toast = useToast()
-  if (error?.response?.data?.errors) {
+export const toast = useToast()
+
+/**
+ * Toast a message based on the different variations of laravel responses
+ * @param result
+ * @returns {string | number}
+ */
+export const toastMessage = (result) => {
+
+  //error
+  if (result?.response?.data?.errors) {
     //toast any validation errors received
-    const errors = error.response.data.errors
+    const errors = result.response.data.errors
     const invalidFields = Object.keys(errors)
     const toastBody = invalidFields.reduce((prev, curr) => {
       return `${prev}` + (prev ? '\r\n' : '') + errors[curr].join(' - ')
     }, '')
-    toast.warning(toastBody)
+    return toast.error(toastBody)
   }
-  else if (error?.response?.data?.message){
-    toast.info(error?.response?.data?.message)
+
+  if (result?.response?.statusText) {
+    return toast.error(result.response.statusText)
   }
-  else if (error?.response?.statusText) {
-    toast.error(error.response.statusText)
+
+  //info
+  if (result?.response?.data?.message){
+    return toast.info(result.response.data.message)
+  }
+
+  if (result?.data?.message) {
+    return toast.info(result.data.message)
   }
 }
 

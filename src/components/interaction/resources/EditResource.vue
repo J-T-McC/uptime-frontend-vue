@@ -34,7 +34,7 @@ import { VForm } from '@/components/form'
 import { PencilAlt } from 'heroicons/vue/outline'
 import useResource from '@/hooks/useResource'
 import { ref } from 'vue'
-import { toastError } from '@/helpers/resource'
+import { toastMessage } from '@/helpers/resource'
 import { useToast } from 'vue-toastification'
 
 export default {
@@ -70,7 +70,7 @@ export default {
         modalRef.value.toggleModal()
         useToast().info("Resource updated")
         emit('resource:updated', response)
-      }).catch(toastError)
+      }).catch(toastMessage)
     }
 
     return {

@@ -65,7 +65,7 @@ import { channelForm } from '@/helpers/forms'
 import { Discord, Slack } from '@/components/svg'
 import { Mail, Bell } from 'heroicons/vue/solid'
 import { ref } from 'vue'
-import { toastError } from '@/helpers/resource'
+import { toastMessage } from '@/helpers/resource'
 import Spinner from '@/components/Spinner'
 
 const channelTypeToIconComponent = {
@@ -89,7 +89,7 @@ export default {
     const pollResources = () => {
       resource.index().then((response) => {
         channels.value = response.data.data
-      }).catch(toastError)
+      }).catch(toastMessage)
     }
 
     pollResources()

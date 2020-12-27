@@ -116,7 +116,7 @@ import EditResource from '@/components/interaction/resources/EditResource'
 import DeleteResource from '@/components/interaction/resources/DeleteResource'
 
 import { monitorForm, toggleTemplate } from '@/helpers/forms.js'
-import { toastError } from '@/helpers/resource'
+import { toastMessage } from '@/helpers/resource'
 import { ref } from 'vue'
 
 import { PresentationChartLine } from 'heroicons/vue/outline'
@@ -157,7 +157,7 @@ export default {
     const pollResources = () => {
       const monitorPromise = monitorResource.index().then((response) => {
         monitors.value = response.data.data
-      }).catch(toastError)
+      }).catch(toastMessage)
 
       const channelPromise = channelResource.index().then((response) => {
         channels.value = response.data.data

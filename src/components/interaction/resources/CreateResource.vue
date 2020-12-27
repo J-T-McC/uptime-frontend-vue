@@ -34,7 +34,7 @@
 import useResource from '@/hooks/useResource'
 import { VForm } from '@/components/form'
 import { ViewGridAdd } from 'heroicons/vue/outline'
-import { toastError } from '@/helpers/resource'
+import { toastMessage } from '@/helpers/resource'
 import { ref } from 'vue'
 import { useToast } from 'vue-toastification'
 
@@ -59,7 +59,7 @@ export default {
         modalRef.value.toggleModal()
         useToast().info("Resource created")
         emit('resource:created', response)
-      }).catch(toastError)
+      }).catch(toastMessage)
     }
 
     return {
