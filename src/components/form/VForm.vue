@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submit">
+  <form class="h-full" @submit.prevent="submit">
     <component
         v-for="(input, i) in config.inputs"
         :is="input.component"
@@ -8,7 +8,13 @@
         v-model:value="vModel[getInputName(input, i)]">
       {{ input }}
     </component>
-    <slot></slot>
+    <slot name="submit">
+      <div class="flex justify-end mt-4">
+        <button type="submit" class="btn btn-md btn-blue font-normal">
+          Submit
+        </button>
+      </div>
+    </slot>
   </form>
 </template>
 
@@ -37,9 +43,9 @@ export default {
       return Object.keys(input)
           .filter(key => !restrictedBinds.includes(key))
           .reduce((obj, key) => {
-            obj[key] = input[key];
-            return obj;
-          }, {});
+            obj[key] = input[key]
+            return obj
+          }, {})
     }
 
     const vModel = reactive({})

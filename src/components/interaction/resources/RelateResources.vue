@@ -34,7 +34,7 @@ import { VForm } from '@/components/form'
 import { Link as LinkIcon } from 'heroicons/vue/outline'
 import useResource from '@/hooks/useResource'
 import { ref } from 'vue'
-import { toastMessage } from '@/helpers/resource'
+import { toastMessage } from '@/helpers/toast'
 import { useToast } from 'vue-toastification'
 
 export default {

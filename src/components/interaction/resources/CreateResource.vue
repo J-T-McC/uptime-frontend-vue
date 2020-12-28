@@ -6,13 +6,7 @@
     </template>
 
     <template v-slot:body>
-      <v-form :config="resourceForm()" @form:submit="confirm">
-        <div class="flex justify-end mt-4">
-          <button type="submit" class="btn btn-md btn-blue font-normal">
-            Save
-          </button>
-        </div>
-      </v-form>
+      <v-form :config="resourceForm()" @form:submit="confirm"></v-form>
     </template>
 
     <template v-slot:toggle>
@@ -34,7 +28,7 @@
 import useResource from '@/hooks/useResource'
 import { VForm } from '@/components/form'
 import { ViewGridAdd } from 'heroicons/vue/outline'
-import { toastMessage } from '@/helpers/resource'
+import { toastMessage } from '@/helpers/toast'
 import { ref } from 'vue'
 import { useToast } from 'vue-toastification'
 

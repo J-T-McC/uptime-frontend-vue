@@ -116,7 +116,7 @@ import EditResource from '@/components/interaction/resources/EditResource'
 import DeleteResource from '@/components/interaction/resources/DeleteResource'
 
 import { monitorForm, toggleTemplate } from '@/helpers/forms.js'
-import { toastMessage } from '@/helpers/resource'
+import { toastMessage } from '@/helpers/toast'
 import { ref } from 'vue'
 
 import { PresentationChartLine } from 'heroicons/vue/outline'

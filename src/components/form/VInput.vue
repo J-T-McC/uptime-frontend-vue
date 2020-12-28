@@ -7,6 +7,8 @@
            :name="name"
            @input="updateValue($event.target.value)"
            class="form-input w-full mt-2 rounded-md border-gray-300 focus:border-blue-600"
+           :readonly="readonly"
+           :disabled="disabled"
     />
   </div>
 </template>
@@ -31,6 +33,14 @@ export default {
     classes: {
       default: 'mt-1',
       type: String
+    },
+    readonly: {
+      default: false,
+      type: Boolean
+    },
+    disabled: {
+      default: false,
+      type: Boolean
     }
   },
   setup (props, { emit }) {

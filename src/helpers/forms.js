@@ -89,6 +89,56 @@ export function forgotPasswordForm() {
   }
 }
 
+export function updatePasswordForm() {
+  return {
+    inputs: [
+      {
+        component: VInput,
+        type: 'password',
+        label: 'Current Password',
+        name: 'current_password',
+        value: ''
+      },
+      {
+        component: VInput,
+        type: 'password',
+        label: 'New Password',
+        name: 'password',
+        value: ''
+      },
+      {
+        component: VInput,
+        type: 'password',
+        label: 'Confirm New Password',
+        name: 'password_confirmation',
+        value: ''
+      }
+    ]
+  }
+}
+
+export function updateProfileForm() {
+  return {
+    inputs: [
+      {
+        component: VInput,
+        type: 'text',
+        label: 'Email Address',
+        name: 'email',
+        value: ''
+      },
+      {
+        component: VInput,
+        type: 'text',
+        label: 'Name',
+        name: 'name',
+        value: ''
+      },
+    ]
+  }
+}
+
+
 export function resetPasswordForm() {
   return {
     inputs: [
