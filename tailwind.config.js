@@ -1,8 +1,11 @@
 module.exports = {
-  // purge: {
-  //   preserveHtmlElements: false,
-  //   content: ['./src/**/*.vue'],
-  // },
+  purge: {
+    preserveHtmlElements: false,
+    content: [
+      './public/*.html',
+      './src/**/*.vue',
+    ],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {

@@ -36,7 +36,7 @@ export default {
   components: { VForm, Container },
   setup () {
     const auth = useAuth()
-    const user = auth.getUser()
+    const user = auth.readOnlyUser
     const updatePasswordFormConfig = updatePasswordForm()
     const updateProfileFormConfig = updateProfileForm()
 
@@ -53,7 +53,6 @@ export default {
         toast.info('Password Updated')
       }).catch(toastMessage)
     }
-
 
     const updateProfile = (data) => {
       auth.updateProfile(data).then(() => {
