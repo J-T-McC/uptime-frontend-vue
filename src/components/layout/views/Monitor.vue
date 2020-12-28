@@ -4,11 +4,23 @@
       <div class="container">
         <div class="flex flex-wrap">
 
-          <div class="w-full m-3" v-if="monitor.value">
-            <h2 class="bg-white p-5 w-full border-b text-gray-900 text-xl rounded shadow-md">
+          <container v-if="monitor.value" :hideBody="true">
+            <template v-slot:header>
+              <span class="inline-block">
+                <span class="flex h-3 w-3 relative">
+                  <span :class="getPulseClass(monitor.value.uptime_status, 400)"
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75">
+                  </span>
+                  <span :class="getPulseClass(monitor.value.uptime_status, 500)"
+                        class="relative inline-flex rounded-full h-3 w-3">
+                  </span>
+                </span>
+              </span>
+
               {{ monitor.value.url }}
-            </h2>
-          </div>
+
+            </template>
+          </container>
 
           <container :loading="!pie.value" class="md:w-1/2">
             <template v-slot:header>
@@ -23,7 +35,7 @@
 
           <container :loading="!trend.value" class="md:w-1/2">
             <template v-slot:header>
-              Weekly trended Uptime
+              Trended Uptime
             </template>
             <template v-slot:body>
               <div class="h-56">
@@ -32,45 +44,7 @@
             </template>
           </container>
 
-          <container :loading="!latestEvents.value">
-            <template v-slot:header>
-              Recent Events
-            </template>
-
-            <template v-slot:body v-if="latestEvents.value">
-              <basic-card
-                  class="xl:w-full lg:w-full sm:w-full lg:w-full mb-0"
-                  v-for="event in latestEvents.value"
-                  :key="event.id">
-
-                <template v-slot:icon>
-                  <component
-                      class="h-10 w-10"
-                      :class="eventToColorMap[`${event.category}-${event.status}`]"
-                      :is="eventToIconMap[`${event.category}-${event.status}`]">
-                  </component>
-                </template>
-
-                <template v-slot:title>
-                  <h4>
-                    <span>{{ event.category }} - {{ event.status }}: </span>
-                    <small class="italic font-normal">{{ formatDate(event.created_at) }}</small>
-                  </h4>
-                </template>
-
-                <template v-slot:description>
-                  <span class="text-sm">{{ event.error }}</span>
-                </template>
-              </basic-card>
-
-              <pagination-buttons @navigate="loadRecentEvents" :meta="paginationMeta.value"></pagination-buttons>
-
-              <p v-if="!latestEvents.value.length" class="italic text-gray-500 text-center">
-                No monitor events available
-              </p>
-
-            </template>
-          </container>
+          <recent-events :monitor-id="resourceID"></recent-events>
 
         </div>
       </div>
@@ -81,36 +55,17 @@
 <script>
 import Vue3ChartJs from 'vue3-chartjs'
 import Container from '@/components/card/Container'
-import BasicCard from '@/components/card/BasicCard'
-import PaginationButtons from '@/components/interaction/PaginationButtons'
-import { reactive } from 'vue'
+import RecentEvents from '@/components/layout/sections/RecentEvents'
 import useResource from '@/hooks/useResource'
+import { reactive } from 'vue'
 import { getTrended, getPast90Days } from '@/helpers/dashboard'
-import { ShieldExclamation, ArrowCircleUp, ArrowCircleDown } from 'heroicons/vue/solid'
 import { useRoute } from 'vue-router'
-import moment from 'moment'
-
-const eventToIconMap = {
-  'CERTIFICATE-VALID': ShieldExclamation,
-  'CERTIFICATE-INVALID': ShieldExclamation,
-  'CERTIFICATE-EXPIRED': ShieldExclamation,
-  'UPTIME-RECOVERED': ArrowCircleUp,
-  'UPTIME-OFFLINE': ArrowCircleDown,
-}
-
-const eventToColorMap = {
-  'CERTIFICATE-VALID': 'text-yellow-400',
-  'CERTIFICATE-INVALID': 'text-red-300',
-  'CERTIFICATE-EXPIRED': 'text-red-300',
-  'UPTIME-RECOVERED': 'text-blue-400',
-  'UPTIME-OFFLINE': 'text-red-300',
-}
+import { toastMessage } from '@/helpers/toast'
 
 export default {
   components: {
-    PaginationButtons,
+    RecentEvents,
     Container,
-    BasicCard,
     Vue3ChartJs,
   },
   emits: ['update-header'],
@@ -122,37 +77,33 @@ export default {
     const resourceID = route.params.id
     const monitor = reactive({})
 
-    useResource('monitors').show(resourceID).then(({data}) => {
+    useResource('monitors').show(resourceID).then(({ data }) => {
       monitor.value = data.data[0] ?? null
-    })
+    }).catch(toastMessage)
 
     getPast90Days('show', resourceID).then(result => pie.value = result)
     getTrended('show', resourceID).then(result => trend.value = result)
 
-    const paginationMeta = reactive({})
-    const loadRecentEvents = (params) => {
-      useResource('latest-monitor-events').show(resourceID, params).then(({ data }) => {
-        latestEvents.value = data.data
-        paginationMeta.value = data.meta
-      })
-    }
-
-    loadRecentEvents({ page: 1 })
-
-    const formatDate = (date) => {
-      return moment(date).local().format('YYYY-MM-DD HH:mm:ss')
+    const getPulseClass = (status, weight) => {
+      let color = 'bg-gray'
+      switch (status) {
+        case 'up' :
+          color = 'bg-green'
+          break
+        case 'down':
+          color = 'bg-red'
+          break
+      }
+      return `${color}-${weight}`
     }
 
     return {
       trend,
       pie,
       latestEvents,
-      paginationMeta,
       monitor,
-      eventToIconMap,
-      eventToColorMap,
-      loadRecentEvents,
-      formatDate
+      resourceID,
+      getPulseClass,
     }
   },
 }
