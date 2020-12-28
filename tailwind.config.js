@@ -9,10 +9,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      fontFamily: {
-        'sans': ['Roboto', 'Sans-serif']
+      colors: {
+
       },
-      colors: {},
       animation: {
         'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'pulse-full-quick': 'pulse-full 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',

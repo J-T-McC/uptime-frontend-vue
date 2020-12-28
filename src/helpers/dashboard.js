@@ -20,7 +20,7 @@ function getChartJSSeries (data) {
     seriesLabels.push(point.category)
   })
 
-  if(!seriesData.length) {
+  if (!seriesData.length) {
     seriesData.push(0)
     seriesLabels.push('No Data')
   }
@@ -37,39 +37,50 @@ const getTrended = async (method = 'index', resourceID = null) => {
   const { seriesData, seriesLabels } = getChartJSSeries(data)
 
   return {
-    id: 'weeklyUptime',
+    id: 'dailyUptime',
     type: 'line',
     data: {
       labels: seriesLabels.reverse(),
       datasets: [
         {
-          label: 'Weekly UpTime',
+          label: 'Up',
           data: seriesData.reverse(),
           fill: 'origin',
           fillOpacity: .1,
-          backgroundColor: tailwindConfig.theme.colors.blue['400'] + hexOpacity.soft,
+          backgroundColor: tailwindConfig.theme.colors.blue['400'] + hexOpacity.medium,
           borderColor: tailwindConfig.theme.colors.blue['400']
         },
         {
           //clone series to add downtime fill to plot
           data: seriesData.reverse(),
           fill: 'end',
-          backgroundColor: tailwindConfig.theme.colors.red['400'] + hexOpacity.soft,
+          backgroundColor: tailwindConfig.theme.colors.white,
           borderColor: tailwindConfig.theme.colors.transparent
         }
       ],
     },
     options: {
-      responsive:true,
+      responsive: true,
       maintainAspectRatio: false,
       legend: {
         display: false
       },
       tooltips: {
         filter: function (item) {
-          //only show uptime series in tooltip
+          //only show up series in tooltip
           return item.datasetIndex === 0
+        },
+        mode: 'nearest',
+        intersect: false,
+        callbacks: {
+          label: function (point) {
+            return point.yLabel + '%'
+          }
         }
+      },
+      hover: {
+        mode: 'nearest',
+        intersect: true
       },
       scales: {
         xAxes: [{
@@ -79,7 +90,11 @@ const getTrended = async (method = 'index', resourceID = null) => {
           offset: seriesData.length === 1
         }],
         yAxes: [{
+          gridLines: {
+            display:false
+          },
           ticks: {
+            display: false,
             suggestedMin: 0,
             suggestedMax: 100,
             callback: function (value) {
@@ -98,13 +113,13 @@ const getPast90Days = async (method = 'index', resourceID = null) => {
   const { seriesData, seriesLabels } = getChartJSSeries(data)
 
   const backgroundColors = {
-    Down: tailwindConfig.theme.colors.red['200'],
+    Down: tailwindConfig.theme.colors.gray['200'],
     Up: tailwindConfig.theme.colors.blue['400'],
   }
 
   return {
-    id: 'weeklyUptime',
-    type: 'doughnut',
+    id: 'dailyUptime',
+    type: 'pie',
     data: {
       labels: seriesLabels,
       datasets: [{
@@ -116,7 +131,7 @@ const getPast90Days = async (method = 'index', resourceID = null) => {
       }],
     },
     options: {
-      responsive:true,
+      responsive: true,
       maintainAspectRatio: false,
       legend: {
         position: 'right'

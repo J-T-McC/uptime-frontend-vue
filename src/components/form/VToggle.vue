@@ -1,6 +1,6 @@
 <template>
   <div :class="classes">
-    <label class="text-gray-700 block mt-3 text-left">
+    <label class="text-gray-700 block mt-3 text-left text-sm">
     <span class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
     <input
         :checked="value"
