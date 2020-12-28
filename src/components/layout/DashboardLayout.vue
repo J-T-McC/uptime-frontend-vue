@@ -2,13 +2,13 @@
 
   <Header />
 
-  <div class="flex h-screen bg-gray-200 font-roboto">
+  <div class="flex h-full bg-gray-200 font-roboto">
     <Sidebar />
 
     <div class="flex-1 flex flex-col overflow-hidden">
 
-      <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-        <div class="container mx-auto px-6 py-8">
+      <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 pb-56">
+        <div class="container mx-auto lg:px-6 lg:py-8">
           <slot />
         </div>
       </main>

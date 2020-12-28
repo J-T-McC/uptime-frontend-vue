@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex flex-col mt-8">
+    <div class="flex flex-col mt-3 lg:mt-8">
       <div class="container">
         <div class="flex flex-wrap">
 

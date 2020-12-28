@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="mt-8 relative">
+    <div class="mt-3 lg:mt-8 relative">
 
-      <div class="container prose-xl">
+      <div class="container prose-xl lg:p-0 p-3">
         <p>
           <create-resource
               @resource:created="pollResources"
