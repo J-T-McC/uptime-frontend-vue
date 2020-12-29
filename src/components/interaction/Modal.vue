@@ -23,7 +23,7 @@
           <div class="border-b border-gray-300 w-full py-4 px-5 text-left text-2xl font-normal relative">
             <slot name="header"></slot>
             <!-- close icon -->
-            <x-circle class="w-5 h-5 text-blue-500 absolute right-4 top-1/3 cursor-pointer" @click="close"></x-circle>
+            <x-circle class="w-5 h-5 text-blue-500 absolute right-4 top-1/3 cursor-pointer hover:text-blue-400" @click="close"></x-circle>
           </div>
 
           <div class="pt-3 px-5 pb-1 font-normal">
@@ -46,7 +46,7 @@
   </transition>
 
   <slot name="toggle">
-    <button class="btn btn-sm btn-indigo font-bold" @click="show">
+    <button class="btn btn-sm btn-blue font-bold" @click="show">
       Open Modal
     </button>
   </slot>

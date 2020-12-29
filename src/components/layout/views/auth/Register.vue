@@ -10,7 +10,7 @@
           <div class="mt-6">
             <button
                 type="submit"
-                class="py-2 px-4 text-center bg-blue-500 rounded-md w-full text-white text-sm hover:bg-indigo-400">
+                class="py-2 px-4 text-center bg-blue-500 rounded-md w-full text-white text-sm hover:bg-blue-400">
               Register
             </button>
           </div>

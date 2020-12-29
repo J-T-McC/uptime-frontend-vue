@@ -8,10 +8,10 @@
             <template v-slot:header>
               <span class="inline-block">
                 <span class="flex h-3 w-3 relative">
-                  <span :class="getPulseClass(monitor.value.uptime_status, 400)"
+                  <span :class="getPulseClass(monitor.value.uptime_status)"
                         class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75">
                   </span>
-                  <span :class="getPulseClass(monitor.value.uptime_status, 500)"
+                  <span :class="getPulseClass(monitor.value.uptime_status)"
                         class="relative inline-flex rounded-full h-3 w-3">
                   </span>
                 </span>
@@ -84,17 +84,17 @@ export default {
     getPast90Days('show', resourceID).then(result => pie.value = result)
     getTrended('show', resourceID).then(result => trend.value = result)
 
-    const getPulseClass = (status, weight) => {
-      let color = 'bg-gray'
+    const getPulseClass = (status) => {
+      let color = 'bg-gray-500'
       switch (status) {
         case 'up' :
-          color = 'bg-green'
+          color = 'bg-green-500'
           break
         case 'down':
-          color = 'bg-red'
+          color = 'bg-red-500'
           break
       }
-      return `${color}-${weight}`
+      return color
     }
 
     return {

@@ -27,14 +27,14 @@ export function loginForm () {
         type: 'email',
         label: 'Email',
         name: 'email',
-        value: 'test@example.com'
+        value: ''
       },
       {
         component: VInput,
         type: 'password',
         label: 'Password',
         name: 'password',
-        value: 'password'
+        value: ''
       }
     ]
   }

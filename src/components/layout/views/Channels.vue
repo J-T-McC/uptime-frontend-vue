@@ -22,6 +22,7 @@
 
         <template v-if="channels && channels.length">
           <basic-card
+              class="sm:w-1/2 xl:w-1/3 mb-2 mt-2 sh"
               v-for="channel in channels"
               :key="channel.id"
               :title="channel.type"

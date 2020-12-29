@@ -28,7 +28,7 @@
 
           <li tabindex="0" @click="select(option)" :id="`${name}-item-${i}`" role="option"
               v-for="(option, i) in options" v-bind:key="option"
-              class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9  cursor-pointer hover:text-white hover:bg-indigo-600 focus:outline-none focus:text-white focus:bg-indigo-600">
+              class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9  cursor-pointer hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white focus:bg-blue-500">
             <div class="flex items-center space-x-3">
               <span class="block truncate"
                     v-bind:class="{ 'font-normal' : !isSelected(option.value) , 'font-semibold' : isSelected(option.value)}">

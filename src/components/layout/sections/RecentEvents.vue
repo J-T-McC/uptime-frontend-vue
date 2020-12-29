@@ -1,12 +1,11 @@
 <template>
-  <container :loading="!latestEvents.value">
+  <container :loading="!latestEvents.value" class="w-full">
     <template v-slot:header>
       Recent Events
     </template>
 
     <template v-slot:body v-if="latestEvents.value">
       <basic-card
-          class="xl:w-full lg:w-full sm:w-full lg:w-full mb-0"
           v-for="event in latestEvents.value"
           :key="event.id">
 
@@ -19,17 +18,18 @@
         </template>
 
         <template v-slot:title>
-          <h2 class="text-lg">
-            <span>{{ event.monitor.url }}</span>
-          </h2>
-          <h4 class="text-sm">
-            <span class="italic">{{ formatDate(event.created_at) }}</span> -
+          <router-link :to="`/monitors/${event.monitor.id}`"
+                       class="text-lg block max-w-xs lg:max-w-md overflow-hidden overflow-ellipsis">
+            {{ event.monitor.url }}
+          </router-link>
+          <span class="text-sm block max-w-md ">
+            <span>{{ formatDate(event.created_at) }}</span> -
             <span>{{ event.category }} - {{ event.status }}</span>
-          </h4>
+          </span>
         </template>
 
         <template v-slot:description>
-          <span class="text-sm">{{ event.error }}</span>
+          <p class="text-sm mb-3 mt-3 italic font-semibold" v-if="event.error">"{{ event.error }}"</p>
         </template>
       </basic-card>
 

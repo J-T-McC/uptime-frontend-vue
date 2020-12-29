@@ -32,13 +32,13 @@
                class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20">
 
             <router-link to="/profile">
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">
                 Profile
               </a>
             </router-link>
 
             <a @click="logout" href="#"
-               class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">
+               class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">
               Log out
             </a>
           </div>

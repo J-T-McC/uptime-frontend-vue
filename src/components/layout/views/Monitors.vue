@@ -25,8 +25,8 @@
               <v-table-th>Endpoint</v-table-th>
               <v-table-th>Stats</v-table-th>
               <v-table-th>Uptime Status</v-table-th>
-              <v-table-th>Uptime Check Enabled</v-table-th>
-              <v-table-th>SSL Check Enabled</v-table-th>
+              <v-table-th class="hidden lg:table-cell">Uptime Check Enabled</v-table-th>
+              <v-table-th class="hidden lg:table-cell">SSL Check Enabled</v-table-th>
               <v-table-th>Options</v-table-th>
             </v-table-row>
           </v-table-head>
@@ -34,8 +34,8 @@
             <v-table-row v-for="(monitor) in monitors" :key="`${monitor.name}-row`">
 
               <v-table-td>
-                <div class="text-sm leading-5 font-medium text-gray-900 flex justify-left h-full text-left">
-                  <a target="_blank" :href="monitor.url">{{ monitor.url }}</a>
+                <div class="text-sm leading-5 font-medium text-gray-900 flex justify-left h-full text-left overflow-hidden">
+                  <a class="break-all" target="_blank" :href="monitor.url">{{ monitor.url }}11111111111111111111111111111111111111111111111111111111111111</a>
                 </div>
               </v-table-td>
 
@@ -46,7 +46,6 @@
                   </router-link>
                 </div>
               </v-table-td>
-
 
               <v-table-td class="text-center">
                    <span
@@ -65,12 +64,11 @@
                           class="animate-ping absolute inline-flex rounded-full opacity-25 w-full h-full">
                       </span>
                    </span>
-
               </v-table-td>
 
-              <v-table-td class="text-center"> {{ monitor.uptime_check_enabled }}</v-table-td>
+              <v-table-td class="text-center hidden lg:table-cell"> {{ monitor.uptime_check_enabled }}</v-table-td>
 
-              <v-table-td class="text-center"> {{ monitor.certificate_check_enabled }}</v-table-td>
+              <v-table-td class="text-center hidden lg:table-cell"> {{ monitor.certificate_check_enabled }}</v-table-td>
 
               <v-table-td>
                 <div class="flex justify-around">
