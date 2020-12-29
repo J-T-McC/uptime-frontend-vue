@@ -27,7 +27,7 @@ function getChartJSSeries (data) {
 
   return {
     seriesData,
-    seriesLabels,
+    seriesLabels
   }
 }
 
@@ -36,15 +36,19 @@ const getTrended = async (method = 'index', resourceID = null) => {
 
   const { seriesData, seriesLabels } = getChartJSSeries(data)
 
+  //flip series into the correct order
+  seriesData.reverse()
+  seriesLabels.reverse()
+
   return {
     id: 'dailyUptime',
     type: 'line',
     data: {
-      labels: seriesLabels.reverse(),
+      labels: seriesLabels,
       datasets: [
         {
           label: 'Up',
-          data: seriesData.reverse(),
+          data: seriesData,
           fill: 'origin',
           fillOpacity: .1,
           backgroundColor: tailwindConfig.theme.colors.blue['400'] + hexOpacity.medium,
@@ -52,7 +56,7 @@ const getTrended = async (method = 'index', resourceID = null) => {
         },
         {
           //clone series to add downtime fill to plot
-          data: seriesData.reverse(),
+          data: seriesData,
           fill: 'end',
           backgroundColor: tailwindConfig.theme.colors.white,
           borderColor: tailwindConfig.theme.colors.transparent
@@ -94,8 +98,8 @@ const getTrended = async (method = 'index', resourceID = null) => {
             display:false
           },
           ticks: {
-            display: false,
-            suggestedMin: 0,
+            display: true,
+            suggestedMin: 50,
             suggestedMax: 100,
             callback: function (value) {
               return `${value}%`
