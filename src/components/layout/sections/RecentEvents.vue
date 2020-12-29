@@ -19,10 +19,11 @@
 
         <template v-slot:title>
           <router-link :to="`/monitors/${event.monitor.id}`"
-                       class="text-lg block max-w-xs lg:max-w-md overflow-hidden overflow-ellipsis">
+                       class="text-lg block overflow-hidden overflow-ellipsis">
             {{ event.monitor.url }}
           </router-link>
-          <span class="text-sm block max-w-md ">
+
+          <span class="text-sm block max-w-md">
             <span>{{ formatDate(event.created_at) }}</span> -
             <span>{{ event.category }} - {{ event.status }}</span>
           </span>
@@ -33,7 +34,7 @@
         </template>
       </basic-card>
 
-      <pagination-buttons @navigate="loadRecentEvents" :meta="paginationMeta.value"></pagination-buttons>
+      <pagination-buttons @navigate="loadRecentEvents" :meta="paginationMeta.value" :buttons-shown="3"></pagination-buttons>
 
       <p v-if="!latestEvents.value.length" class="italic text-gray-500 text-center">
         No monitor events available
@@ -111,7 +112,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-
-</style>
