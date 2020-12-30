@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-white w-full shadow-md">
+  <header class="bg-white w-full shadow-md fixed top-0 z-20">
     <div class="flex justify-between items-center py-4 px-6">
       <div class="flex items-center">
         <!-- Mobile Nav Toggle -->

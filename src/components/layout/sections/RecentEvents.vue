@@ -19,7 +19,7 @@
 
         <template v-slot:title>
           <router-link :to="`/monitors/${event.monitor.id}`"
-                       class="text-lg block overflow-hidden overflow-ellipsis">
+                       class="block overflow-hidden overflow-ellipsis">
             {{ event.monitor.url }}
           </router-link>
 
@@ -30,7 +30,7 @@
         </template>
 
         <template v-slot:description>
-          <p class="text-sm mb-3 mt-3 italic font-semibold" v-if="event.error">"{{ event.error }}"</p>
+          <p class="text-sm mb-3 italic font-semibold" v-if="event.error">"{{ event.error }}"</p>
         </template>
       </basic-card>
 
