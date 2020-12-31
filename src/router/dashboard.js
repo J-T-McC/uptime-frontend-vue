@@ -20,8 +20,8 @@ const DashboardRoutes = [
   },
   { path: '/monitors/:id', component: Monitor, name: 'Monitor' },
   {
-    path: '/integrations',
-    name: 'Integrations',
+    path: '/channels',
+    name: 'Channels',
     component: Integrations,
     meta: { sidebar: true, icon: Bell }
   },
