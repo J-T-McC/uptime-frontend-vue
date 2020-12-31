@@ -15,14 +15,14 @@
         </p>
       </div>
 
-      <div class="flex flex-wrap mt-6">
+      <div class="flex flex-wrap mt-2 lg:mt-6 pl-3 pr-3 lg:p-0">
         <div class="h-56" v-if="!channels">
           <spinner></spinner>
         </div>
 
         <template v-if="channels && channels.length">
           <basic-card
-              class="sm:w-1/2 xl:w-1/3 mb-2 mt-2 sh"
+              class="lg:w-1/2 xl:w-1/3 mb-2 mt-2 sh"
               v-for="channel in channels"
               :key="channel.id"
               :title="channel.type"

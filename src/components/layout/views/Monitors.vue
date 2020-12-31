@@ -15,7 +15,7 @@
         </p>
       </div>
 
-      <div class="flex flex-col mt-6">
+      <div class="flex flex-col mt-2 lg:mt-6">
         <div class="h-56" v-if="!monitors">
           <spinner></spinner>
         </div>
