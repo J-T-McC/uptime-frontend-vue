@@ -67,12 +67,10 @@
               </v-table-td>
 
               <v-table-td class="text-center hidden lg:table-cell">
-<!--                {{ monitor.uptime_check_enabled }}-->
                 <component class="h-6 w-6 text-gray-400 inline" :class="{'text-blue-400': monitor.uptime_check_enabled}" :is="monitor.uptime_check_enabled ? 'check-circle' : 'x-circle'"></component>
               </v-table-td>
 
               <v-table-td class="text-center hidden lg:table-cell">
-<!--                {{ // monitor.certificate_check_enabled }}-->
                 <component class="h-6 w-6 text-gray-400 inline" :class="{'text-blue-400': monitor.certificate_check_enabled}" :is="monitor.certificate_check_enabled ? 'check-circle' : 'x-circle'"></component>
               </v-table-td>
 
@@ -80,13 +78,34 @@
                 <div class="flex justify-around">
 
                   <relate-resources
-                      v-if="monitor.channelForm"
+                      v-if="monitor.channelForm && monitor.channelForm.inputs.length"
                       @resource:updated="pollResources"
                       :header="`Toggle Channels - ${monitor.url}`"
                       resource-name="monitors-channels"
                       :resource-form="monitor.channelForm"
                       :resource="monitor">
                   </relate-resources>
+
+                  <modal ref="modalRef" v-else>
+                    <template v-slot:header>
+                      Opps!
+                    </template>
+
+                    <template v-slot:body>
+                      <p class="p-3">It looks like you have not added any notification channels yet.</p>
+                      <p class="p-3">
+                        <router-link class="text-blue-400" to="/channels">
+                          Click here
+                        </router-link> to get started!
+                      </p>
+                    </template>
+                    <template v-slot:toggle>
+                      <a @click="$refs.modalRef.show" href="#">
+                        <link-icon class='text-blue-500 w-4 h-4 ' />
+                      </a>
+                    </template>
+                    <template v-slot:footer><span></span></template>
+                  </modal>
 
                   <edit-resource
                       @resource:updated="pollResources"
@@ -123,7 +142,7 @@ import { monitorForm, toggleTemplate } from '@/helpers/forms.js'
 import { toastMessage } from '@/helpers/toast'
 import { ref } from 'vue'
 
-import { ChartPie, CheckCircle, XCircle } from 'heroicons/vue/outline'
+import { ChartPie, CheckCircle, XCircle, Link as LinkIcon } from 'heroicons/vue/outline'
 
 import {
   VTable,
@@ -151,7 +170,8 @@ export default {
     VTableTh,
     ChartPie,
     CheckCircle,
-    XCircle
+    XCircle,
+    LinkIcon
   },
   setup () {
     const monitorResource = useResource('monitors')
@@ -188,10 +208,12 @@ export default {
     pollResources()
 
     const showModal = ref(false)
+    const modalRef = ref(null)
 
     return {
       monitors,
       showModal,
+      modalRef,
       pollResources,
       monitorForm
     }
