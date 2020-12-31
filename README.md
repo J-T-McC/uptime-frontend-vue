@@ -4,7 +4,7 @@ This is the frontend SPA to be paired with [Uptime API](https://github.com/J-T-M
 
 This site was using [Vue3](https://v3.vuejs.org/guide/introduction.html) & [Tailwind CSS](https://tailwindcss.com/)
 
-You can try it out at [https://uptime.tysonmccarney.com/](https://uptKime.tysonmccarney.com/)
+You can try it out at [https://uptime.tysonmccarney.com/](https://uptime.tysonmccarney.com/)
 
 ## Project setup
 
