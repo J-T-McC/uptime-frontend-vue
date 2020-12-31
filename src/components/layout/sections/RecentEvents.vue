@@ -30,7 +30,7 @@
         </template>
 
         <template v-slot:description>
-          <p class="text-sm mb-3 italic p-2 shadow-inner bg-gray-100" v-if="event.error">"{{ event.error }}"</p>
+          <p class="text-sm mb-3 italic p-2 shadow-inner bg-gray-100 mt-2" v-if="event.error">"{{ event.error }}"</p>
         </template>
       </basic-card>
 

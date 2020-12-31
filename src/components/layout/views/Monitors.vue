@@ -34,7 +34,7 @@
             <v-table-row v-for="(monitor) in monitors" :key="`${monitor.name}-row`">
 
               <v-table-td>
-                <div class="text-sm leading-5 font-medium text-gray-900 flex justify-left h-full text-left">
+                <div class="text-xs lg:text-sm leading-5 text-gray-900 flex justify-left h-full text-left">
                   <a target="_blank" :href="monitor.url">{{ monitor.url }}</a>
                 </div>
               </v-table-td>
@@ -42,7 +42,7 @@
               <v-table-td>
                 <div class="flex justify-around">
                   <router-link class="text-blue-400" :to="`/monitors/${monitor.id}`">
-                    <presentation-chart-line class="h-7 w-7"></presentation-chart-line>
+                    <chart-pie class="h-6 w-6"></chart-pie>
                   </router-link>
                 </div>
               </v-table-td>
@@ -66,9 +66,15 @@
                    </span>
               </v-table-td>
 
-              <v-table-td class="text-center hidden lg:table-cell"> {{ monitor.uptime_check_enabled }}</v-table-td>
+              <v-table-td class="text-center hidden lg:table-cell">
+<!--                {{ monitor.uptime_check_enabled }}-->
+                <component class="h-6 w-6 text-gray-400 inline" :class="{'text-blue-400': monitor.uptime_check_enabled}" :is="monitor.uptime_check_enabled ? 'check-circle' : 'x-circle'"></component>
+              </v-table-td>
 
-              <v-table-td class="text-center hidden lg:table-cell"> {{ monitor.certificate_check_enabled }}</v-table-td>
+              <v-table-td class="text-center hidden lg:table-cell">
+<!--                {{ // monitor.certificate_check_enabled }}-->
+                <component class="h-6 w-6 text-gray-400 inline" :class="{'text-blue-400': monitor.certificate_check_enabled}" :is="monitor.certificate_check_enabled ? 'check-circle' : 'x-circle'"></component>
+              </v-table-td>
 
               <v-table-td>
                 <div class="flex justify-around">
@@ -117,7 +123,7 @@ import { monitorForm, toggleTemplate } from '@/helpers/forms.js'
 import { toastMessage } from '@/helpers/toast'
 import { ref } from 'vue'
 
-import { PresentationChartLine } from 'heroicons/vue/outline'
+import { ChartPie, CheckCircle, XCircle } from 'heroicons/vue/outline'
 
 import {
   VTable,
@@ -143,7 +149,9 @@ export default {
     VTableTd,
     VTableRow,
     VTableTh,
-    PresentationChartLine
+    ChartPie,
+    CheckCircle,
+    XCircle
   },
   setup () {
     const monitorResource = useResource('monitors')
