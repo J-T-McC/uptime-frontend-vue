@@ -20,7 +20,7 @@
       <div class="text-black fixed z-50 w-full md:w-1/2 xl:w-1/3 2xl:1/4 top-2 md:top-1/4 bg-white rounded">
 
         <div class="w-full">
-          <div class="border-b border-gray-300 w-full py-4 px-5 text-left text-2xl font-normal relative">
+          <div class="border-b border-gray-300 w-full py-4 px-5 text-left text-xl font-normal relative">
             <slot name="header"></slot>
             <!-- close icon -->
             <x-circle class="w-5 h-5 text-blue-500 absolute right-4 top-1/3 cursor-pointer hover:text-blue-400" @click="close"></x-circle>
