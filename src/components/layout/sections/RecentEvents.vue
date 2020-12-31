@@ -19,18 +19,18 @@
 
         <template v-slot:title>
           <router-link :to="`/monitors/${event.monitor.id}`"
-                       class="block overflow-hidden overflow-ellipsis">
+                       class="block overflow-hidden overflow-ellipsis font-semibold">
             {{ event.monitor.url }}
           </router-link>
 
-          <span class="text-sm block max-w-md">
+          <span class="text-xs block max-w-md">
             <span>{{ formatDate(event.created_at) }}</span> -
             <span>{{ event.category }} - {{ event.status }}</span>
           </span>
         </template>
 
         <template v-slot:description>
-          <p class="text-sm mb-3 italic font-semibold" v-if="event.error">"{{ event.error }}"</p>
+          <p class="text-sm mb-3 italic p-2 shadow-inner bg-gray-100" v-if="event.error">"{{ event.error }}"</p>
         </template>
       </basic-card>
 
@@ -64,10 +64,10 @@ const eventToIconMap = {
 
 const eventToColorMap = {
   'CERTIFICATE-VALID': 'text-yellow-400',
-  'CERTIFICATE-INVALID': 'text-red-300',
-  'CERTIFICATE-EXPIRED': 'text-red-300',
+  'CERTIFICATE-INVALID': 'text-red-400',
+  'CERTIFICATE-EXPIRED': 'text-red-400',
   'UPTIME-RECOVERED': 'text-blue-400',
-  'UPTIME-OFFLINE': 'text-red-300',
+  'UPTIME-OFFLINE': 'text-red-400',
 }
 
 export default {
