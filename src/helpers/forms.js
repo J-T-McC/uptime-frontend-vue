@@ -24,17 +24,19 @@ export function loginForm () {
     inputs: [
       {
         component: VInput,
+        required: true,
         type: 'email',
         label: 'Email',
         name: 'email',
-        value: ''
+        value: '',
       },
       {
         component: VInput,
+        required: true,
         type: 'password',
         label: 'Password',
         name: 'password',
-        value: ''
+        value: '',
       }
     ]
   }
@@ -45,6 +47,7 @@ export function registerForm() {
     inputs: [
       {
         component: VInput,
+        required: true,
         type: 'text',
         label: 'Name',
         name: 'name',
@@ -52,6 +55,7 @@ export function registerForm() {
       },
       {
         component: VInput,
+        required: true,
         type: 'email',
         label: 'Email',
         name: 'email',
@@ -59,6 +63,7 @@ export function registerForm() {
       },
       {
         component: VInput,
+        required: true,
         type: 'password',
         label: 'Password',
         name: 'password',
@@ -66,6 +71,7 @@ export function registerForm() {
       },
       {
         component: VInput,
+        required: true,
         type: 'password',
         label: 'Confirm Password',
         name: 'password_confirmation',
@@ -80,6 +86,7 @@ export function forgotPasswordForm() {
     inputs: [
       {
         component: VInput,
+        required: true,
         type: 'email',
         label: 'Email',
         name: 'email',
@@ -94,6 +101,7 @@ export function updatePasswordForm() {
     inputs: [
       {
         component: VInput,
+        required: true,
         type: 'password',
         label: 'Current Password',
         name: 'current_password',
@@ -101,6 +109,7 @@ export function updatePasswordForm() {
       },
       {
         component: VInput,
+        required: true,
         type: 'password',
         label: 'New Password',
         name: 'password',
@@ -108,6 +117,7 @@ export function updatePasswordForm() {
       },
       {
         component: VInput,
+        required: true,
         type: 'password',
         label: 'Confirm New Password',
         name: 'password_confirmation',
@@ -122,6 +132,7 @@ export function updateProfileForm() {
     inputs: [
       {
         component: VInput,
+        required: true,
         type: 'text',
         label: 'Email Address',
         name: 'email',
@@ -129,6 +140,7 @@ export function updateProfileForm() {
       },
       {
         component: VInput,
+        required: true,
         type: 'text',
         label: 'Name',
         name: 'name',
@@ -144,6 +156,7 @@ export function resetPasswordForm() {
     inputs: [
       {
         component: VInput,
+        required: true,
         type: 'email',
         label: 'Email',
         name: 'email',
@@ -151,6 +164,7 @@ export function resetPasswordForm() {
       },
       {
         component: VInput,
+        required: true,
         type: 'password',
         label: 'Password',
         name: 'password',
@@ -158,6 +172,7 @@ export function resetPasswordForm() {
       },
       {
         component: VInput,
+        required: true,
         type: 'password',
         label: 'Confirm Password',
         name: 'password_confirmation',
@@ -180,6 +195,7 @@ export function monitorForm () {
     inputs: [
       {
         component: VInput,
+        required: true,
         type: 'text',
         placeholder: 'Enter target URL',
         name: 'url',
@@ -188,7 +204,7 @@ export function monitorForm () {
       {
         component: VInput,
         type: 'text',
-        placeholder: 'Confirm string in result',
+        placeholder: 'Optional string to confirm in response',
         name: 'look_for_string',
         value: ''
       },
@@ -225,6 +241,7 @@ export function channelForm () {
       },
       {
         component: VInput,
+        required: true,
         type: 'text',
         label: 'Add your integrations endpoint (ex. email or webhook url)',
         name: 'endpoint',
@@ -232,6 +249,7 @@ export function channelForm () {
       },
       {
         component: VInput,
+        required: true,
         label: 'Give it a description',
         name: 'description',
         value: ''
