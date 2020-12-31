@@ -69,6 +69,14 @@ const getTrended = async (method = 'index', resourceID = null) => {
       legend: {
         display: false
       },
+      layout: {
+        padding: {
+          top: 15,
+          right: 20,
+          left: 5,
+          bottom: 5,
+        }
+      },
       tooltips: {
         filter: function (item) {
           //only show up series in tooltip
@@ -137,6 +145,14 @@ const getPast90Days = async (method = 'index', resourceID = null) => {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      layout: {
+        padding: {
+          top: 10,
+          right: 20,
+          // left: 5,
+          bottom: 10,
+        },
+      },
       legend: {
         position: 'right'
       },
