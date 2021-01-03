@@ -36,44 +36,44 @@ export function useAuth () {
   // default laravel fortify endpoints
   const login = (data) => {
     return axios
-      .post(apiEndpoint + '/login', data)
+      .post(sanctumEndpoint + '/login', data)
       .then(() => checkIfAuthenticated())
   }
 
   const register = (data) => {
-    return axios.post(apiEndpoint + '/register', data)
+    return axios.post(sanctumEndpoint + '/register', data)
   }
 
   const verifyEmail = async (id, hash, params) => {
-    return axios.get(apiEndpoint + `/email/verify/${id}/${hash}`, {
+    return axios.get(sanctumEndpoint + `/email/verify/${id}/${hash}`, {
       params
     })
   }
 
   const forgotPassword = (data) => {
-    return axios.post(apiEndpoint + '/forgot-password', data)
+    return axios.post(sanctumEndpoint + '/forgot-password', data)
   }
 
   const resetPassword = (data) => {
-    return axios.post(apiEndpoint + '/reset-password', data)
+    return axios.post(sanctumEndpoint + '/reset-password', data)
   }
 
   const updatePassword = (data) => {
-    return axios.put(apiEndpoint + '/user/password', data)
+    return axios.put(sanctumEndpoint + '/user/password', data)
   }
 
   const updateProfile = (data) => {
-    return axios.put(apiEndpoint + '/user/profile-information', data)
+    return axios.put(sanctumEndpoint + '/user/profile-information', data)
   }
 
   const logout = () => {
-    return axios.post(apiEndpoint + '/logout').then(() => {
+    return axios.post(sanctumEndpoint + '/logout').then(() => {
       user.value = false
     })
   }
 
   const resendVerificationEmail = () => {
-    return axios.post(apiEndpoint + '/email/verification-notification')
+    return axios.post(sanctumEndpoint + '/email/verification-notification')
   }
 
   // helper methods
