@@ -9,7 +9,10 @@ const AuthRoutes = [
     name: 'Login',
     component: Login,
     meta: { layout: 'empty', auth: true },
-    alias: '/email/verify/:id?/:hash?',
+    alias: [
+      '/email/verify/:id?/:hash?',
+      '/api/email/verify/:id?/:hash?'
+    ],
   },
     {
     path: '/register',
