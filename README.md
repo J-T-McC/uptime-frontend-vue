@@ -19,8 +19,8 @@ You can try it out at [https://uptime.tysonmccarney.com/](https://uptime.tysonmc
 #spa domain
 VUE_APP_URL=http://app.my-domain.com
 
-#api domain with prefix for endpoint routes
-VUE_APP_API=http://api.my-domain.com/app
+#api domain
+VUE_APP_API=http://api.my-domain.com
 
 ```
 ### Install and build 
