@@ -18,8 +18,7 @@ You can try it out at [https://uptime.tysonmccarney.com/](https://uptime.tysonmc
 
 #spa domain
 VUE_APP_URL=http://app.my-domain.com
-#root api domain
-VUE_APP_SANCTUM=http://api.my-domain.com
+
 #api domain with prefix for endpoint routes
 VUE_APP_API=http://api.my-domain.com/app
 
@@ -32,8 +31,11 @@ If you change this domain, make sure you update your API endpoint domain as well
 host file in windows to point that domain to localhost.
 
 ```shell script
+
 yarn install
+
 yarn serve
+
 ```
 
 ## License
