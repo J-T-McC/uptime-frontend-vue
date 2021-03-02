@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import Vue3ChartJs from 'vue3-chartjs'
+import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
 import Container from '@/components/card/Container'
 import { reactive } from 'vue'
 import { getTrended, getPast90Days } from '@/helpers/dashboard'

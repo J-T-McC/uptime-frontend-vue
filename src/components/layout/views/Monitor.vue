@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import Vue3ChartJs from 'vue3-chartjs'
+import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
 import Container from '@/components/card/Container'
 import RecentEvents from '@/components/layout/sections/RecentEvents'
 import useResource from '@/hooks/useResource'
