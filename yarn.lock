@@ -907,10 +907,10 @@
     cssnano-preset-default "^4.0.0"
     postcss "^7.0.0"
 
-"@j-t-mcc/vue3-chartjs@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@j-t-mcc/vue3-chartjs/-/vue3-chartjs-0.1.1.tgz#f4ef01645bd219fc3157ad7fe74be8bcb9b5d2ea"
-  integrity sha512-hf6TuPbm9yfzlxjbR59mnZxACUdXRnevAna1lRu7UwisgyO+ioXs9Lujushkn3+xxsJRklWjpvCcwI3YbcvW5Q==
+"@j-t-mcc/vue3-chartjs@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@j-t-mcc/vue3-chartjs/-/vue3-chartjs-0.2.0.tgz#b30bc593833ef0669da231d03fb6508e446bbdc4"
+  integrity sha512-27+/DciGu57i/E3uRYUJyrKh/U5YTr6gWDxQBOmKHM7dEYi2trFtSQDlvNq1k046sCLLlxGfFkxltHNBIt8r0w==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
