@@ -66,8 +66,23 @@ const getTrended = async (method = 'index', resourceID = null) => {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      legend: {
-        display: false
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          filter: function (item) {
+            //only show up series in tooltip
+            return item.datasetIndex === 0
+          },
+          mode: 'nearest',
+          intersect: false,
+          callbacks: {
+            label: function (point) {
+              return point.formattedValue + '%'
+            }
+          }
+        },
       },
       layout: {
         padding: {
@@ -77,43 +92,30 @@ const getTrended = async (method = 'index', resourceID = null) => {
           bottom: 5,
         }
       },
-      tooltips: {
-        filter: function (item) {
-          //only show up series in tooltip
-          return item.datasetIndex === 0
-        },
-        mode: 'nearest',
-        intersect: false,
-        callbacks: {
-          label: function (point) {
-            return point.yLabel + '%'
-          }
-        }
-      },
       hover: {
         mode: 'nearest',
         intersect: true
       },
       scales: {
-        xAxes: [{
+        x: {
           ticks: {
             display: false
           },
           offset: seriesData.length === 1
-        }],
-        yAxes: [{
-          gridLines: {
-            display:false
+        },
+        y: {
+          suggestedMin: 70,
+          suggestedMax: 100,
+          grid: {
+            display: false
           },
           ticks: {
             display: true,
-            suggestedMin: 50,
-            suggestedMax: 100,
             callback: function (value) {
               return `${value}%`
             }
           }
-        }]
+        }
       },
     }
   }
@@ -143,6 +145,11 @@ const getPast90Days = async (method = 'index', resourceID = null) => {
       }],
     },
     options: {
+      plugins: {
+        legend: {
+          position: 'right'
+        },
+      },
       responsive: true,
       maintainAspectRatio: false,
       layout: {
@@ -152,9 +159,6 @@ const getPast90Days = async (method = 'index', resourceID = null) => {
           // left: 5,
           bottom: 10,
         },
-      },
-      legend: {
-        position: 'right'
       },
     }
   }
