@@ -23,7 +23,7 @@ ApiService.interceptors.response.use((request) => {
 export default function useResource (resource = '') {
 
   const buildRoute = (...args) => {
-    return  '/app/' + args.join('/')
+    return  '/api/' + args.join('/')
   }
 
   const index = async (params = {}) => {

@@ -3,7 +3,7 @@ import ApiService from '@/services/ApiService'
 export default function AuthService() {
 
   const checkIfAuthenticated = async () => {
-    return ApiService.get('/app/authenticated')
+    return ApiService.get('/api/authenticated')
   }
 
   const fetchCsrf = () => {
