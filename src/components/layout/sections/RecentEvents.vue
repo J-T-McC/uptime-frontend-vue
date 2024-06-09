@@ -58,6 +58,7 @@ const eventToIconMap = {
   'CERTIFICATE-VALID': ShieldExclamation,
   'CERTIFICATE-INVALID': ShieldExclamation,
   'CERTIFICATE-EXPIRED': ShieldExclamation,
+  'CERTIFICATE-RECOVERED': ShieldExclamation,
   'UPTIME-RECOVERED': ArrowCircleUp,
   'UPTIME-OFFLINE': ArrowCircleDown,
 }
@@ -66,6 +67,7 @@ const eventToColorMap = {
   'CERTIFICATE-VALID': 'text-yellow-400',
   'CERTIFICATE-INVALID': 'text-red-400',
   'CERTIFICATE-EXPIRED': 'text-red-400',
+  'CERTIFICATE-RECOVERED': 'text-red-400',
   'UPTIME-RECOVERED': 'text-blue-400',
   'UPTIME-OFFLINE': 'text-red-400',
 }
