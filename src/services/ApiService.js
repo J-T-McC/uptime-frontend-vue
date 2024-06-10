@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiEndpoint = process.env.VUE_APP_API
+const apiEndpoint = import.meta.env.VITE_API_URL
 
 const ApiService = axios.create({
   baseURL: apiEndpoint

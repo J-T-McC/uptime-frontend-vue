@@ -2,8 +2,8 @@ module.exports = {
   purge: {
     preserveHtmlElements: false,
     content: [
-      './public/*.html',
-      './src/**/*.vue',
+      './index.html',
+      './src/**/*.{vue,js,ts,jsx,tsx}',
     ],
   },
   darkMode: false, // or 'media' or 'class'
