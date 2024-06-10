@@ -55,6 +55,7 @@ import { ArrowCircleDown, ArrowCircleUp, ShieldExclamation } from 'heroicons/vue
 import moment from 'moment'
 
 const eventToIconMap = {
+  'CERTIFICATE-ONLINE': ShieldExclamation,
   'CERTIFICATE-VALID': ShieldExclamation,
   'CERTIFICATE-INVALID': ShieldExclamation,
   'CERTIFICATE-EXPIRED': ShieldExclamation,
