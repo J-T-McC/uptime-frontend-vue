@@ -25,7 +25,7 @@
               class="lg:w-1/2 xl:w-1/3 mb-2 mt-2 sh"
               v-for="channel in channels"
               :key="channel.id"
-              :title="channel.type"
+              :title="getChannelTitle(channel)"
               :icon="channelTypeToIconComponent[channel.type] ?? Bell"
               :description="channel.description">
 
@@ -93,6 +93,14 @@ export default {
       }).catch(toastMessage)
     }
 
+    const getChannelTitle = (channel) => {
+      if (!channel.verified) {
+        return `${channel.type} (unverified)`
+      }
+
+      return channel.type
+    }
+
     pollResources()
 
     const showModal = ref(false)
@@ -101,6 +109,7 @@ export default {
       channelTypeToIconComponent,
       channels,
       showModal,
+      getChannelTitle,
       pollResources,
       channelForm,
       Bell

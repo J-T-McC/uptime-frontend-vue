@@ -7,6 +7,7 @@ const ApiService = axios.create({
 })
 
 ApiService.defaults.withCredentials = true
+ApiService.defaults.withXSRFToken = true
 ApiService.defaults.headers['Accept'] = 'application/json'
 
 export default ApiService
