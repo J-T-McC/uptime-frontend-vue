@@ -32,7 +32,7 @@ const DashboardRoutes = [
     component: Profile,
   },
   {
-    path: '/api/channel/verify/:id',
+    path: '/api/channel/verify/:channel/:endpoint',
     name: 'Verify Channel',
     component: Verify,
     meta: { layout: 'empty' }
