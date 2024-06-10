@@ -8,7 +8,8 @@ import ApiService from '@/services/ApiService';
 
 const route = useRoute();
 
-const encryptedId = computed(() => route.params.id);
+const encryptedId = computed(() => route.params.channel);
+const endpointHash = computed(() => route.params.endpoint);
 const expires = computed(() => route.query.expires);
 const signature = computed(() => route.query.signature);
 
@@ -18,7 +19,7 @@ const showFailure = ref(false);
 
 const verifyChannel = async () => {
   try {
-    await ApiService.get(`api/channel/verify/${encryptedId.value}`, {
+    await ApiService.get(`api/channel/verify/${encryptedId.value}/${endpointHash.value}`, {
       params: {
         expires: expires.value,
         signature: signature.value
