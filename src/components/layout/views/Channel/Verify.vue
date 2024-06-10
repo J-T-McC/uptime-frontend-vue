@@ -53,7 +53,7 @@ onMounted(() => {
         </p>
 
         <p v-if="showSuccess">
-          Your channel has been verified. It cant now receive notifications.
+          Your channel has been verified. It can now receive notifications.
         </p>
 
         <p v-if="showFailure">
