@@ -4,6 +4,7 @@ import Monitors from '@/components/layout/views/Monitors'
 import Monitor from '@/components/layout/views/Monitor'
 import Integrations from '@/components/layout/views/Channels'
 import Profile from '@/components/layout/views/Profile'
+import Verify from '@/components/layout/views/Channel/Verify.vue';
 
 const DashboardRoutes = [
   {
@@ -29,6 +30,12 @@ const DashboardRoutes = [
     path: '/profile',
     name: 'Profile',
     component: Profile,
+  },
+  {
+    path: '/api/channel/verify/:id',
+    name: 'Verify Channel',
+    component: Verify,
+    meta: { layout: 'empty' }
   }
 ]
 

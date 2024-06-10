@@ -181,7 +181,10 @@ export default {
     const channels = ref([])
 
     const pollResources = () => {
-      const monitorPromise = monitorResource.index().then((response) => {
+      const monitorPromise = monitorResource.index({
+        include: 'channels',
+        sort: 'uptime_status,-id',
+      }).then((response) => {
         monitors.value = response.data.data
       }).catch(toastMessage)
 
