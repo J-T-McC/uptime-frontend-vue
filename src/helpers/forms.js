@@ -236,6 +236,7 @@ export function channelForm () {
           { value: 'mail', label: 'E-Mail' },
           { value: 'slack', label: 'Slack Webhook' },
           { value: 'discord', label: 'Discord Webhook' },
+          { value: 'PagerDuty', label: 'Pager Duty Events API v2' },
         ],
         value: ''
       },
