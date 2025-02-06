@@ -199,7 +199,7 @@ export default {
             const channelActive = monitor.channels.filter(monitorsChannel => monitorsChannel.id === channel.id)
             form.inputs.push(toggleTemplate(
                 `${channel.type}: ${channel.description}`,
-                `id[${channel.id}]`,
+                channel.id,
                 channelActive.length > 0
             ))
           })
