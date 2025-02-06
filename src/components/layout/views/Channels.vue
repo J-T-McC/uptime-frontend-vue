@@ -63,7 +63,7 @@ import EditResource from '@/components/interaction/resources/EditResource'
 import DeleteResource from '@/components/interaction/resources/DeleteResource'
 
 import { channelForm } from '@/helpers/forms'
-import { Discord, Slack } from '@/components/svg'
+import { Discord, Slack, PagerDuty } from '@/components/svg'
 import { Mail, Bell } from 'heroicons/vue/solid'
 import { ref } from 'vue'
 import { toastMessage } from '@/helpers/toast'
@@ -73,6 +73,7 @@ const channelTypeToIconComponent = {
   'mail': Mail,
   'discord': Discord,
   'slack': Slack,
+  'PagerDuty': PagerDuty,
 }
 
 export default {
