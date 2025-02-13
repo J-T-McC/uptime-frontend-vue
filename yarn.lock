@@ -41,10 +41,10 @@
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.14.54.tgz#de2a4be678bd4d0d1ffbb86e6de779cde5999028"
   integrity sha512-bZBrLAIX1kpWelV0XemxBZllyRmM6vgFQQG2GdNb+r3Fkp0FOh1NJSvekXDs7jq70k4euu1cryLMfU+mTXlEpw==
 
-"@j-t-mcc/vue3-chartjs@^2.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@j-t-mcc/vue3-chartjs/-/vue3-chartjs-2.0.0.tgz#9c7f62054d2141487a93ab92fb16a7db907851b2"
-  integrity sha512-0fjTfpn8+KUjpeXDuWiLOzN2fqtPof7Zxxf83ld4s/bPt8j8WUh0hg4If6iuUrT5/t/vQAkXRBYRnKeh6zr53A==
+"@j-t-mcc/vue3-chartjs@^2.1":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@j-t-mcc/vue3-chartjs/-/vue3-chartjs-2.1.0.tgz#fa4045d2451d7ddcf90f58012d22cfd08174d362"
+  integrity sha512-dGFLIiUhzP7Mvc4Zr5pzwPbU3rPx4+DHUipJHo4/bOX1nReRfZKxsqhWA3e96/CH5pSie46E0AjrGJxEBZprCw==
 
 "@jridgewell/sourcemap-codec@^1.5.0":
   version "1.5.0"
